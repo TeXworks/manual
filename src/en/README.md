@@ -27,10 +27,12 @@ Make sure you have the following required LaTeX packages installed:
 and the ZapfChancery font.
 
 When using TeXLive, these can be installed by running
+```
 	tlmgr install amsfonts amsmath babel babel-french booktabs ec etoolbox \
 	              fancyhdr fancyvrb fncychap footmisc framed graphics hyperref \
 	              idxlayout keystroke latex lm microtype needspace sectsty \
 	              tocbibind tools upquote url wrapfig zapfchan
+```
 from the command line.
 
 If you intend to typeset in the HTML format, you also need tex4ht.
@@ -41,7 +43,7 @@ If you intend to typeset in the HTML format, you also need tex4ht.
 Disclaimer
 ================================================================================
 
-Copyright (C) 2010-2013  Alain Delmotte, Stefan Löffler, and contributors.
+Copyright (C) 2010-2015  Alain Delmotte, Stefan Löffler, and contributors.
 Some rights reserved.
 
 Unless noted otherwise, the icons in the images/ folder are taken from the

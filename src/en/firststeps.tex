@@ -76,8 +76,8 @@ Save the file in a folder for test documents (e.g., \path{<home>\TeXworks_tests}
 Next we start typesetting\index{document!typesetting}\footnote{We also use the words ``compilation'' and ``to compile'' for the same action; indeed {\LaTeX} works on the source file to produce a \path{.pdf} output, so there is a compilation.} by clicking the green button \raisebox{-2pt}{\includegraphics{iconTypeset}}
 or by \keysequence{Ctrl+T}\index{Ctrl+T|texttt} (Mac OS X: \keysequence{Cmd+T}).
 
-A new panel opens between the typing area and the status bar: the \emph{output panel\index{output panel}}, labeled \emph{Log\index{log}}; everything {\LaTeX} is doing is displayed there\footnote{see page \pageref{fig:consoleOutput} for a picture of the panel}. When {\LaTeX} finishes this panel disappears (if there no error occurred) and a new window will appear; in this new window, the \emph{Preview window\index{preview window}}\index{document!previewing}, you can see a page with a title \foreignlanguage{frenchb}{``Premier document''} followed by the name of the author \foreignlanguage{frenchb}{``Un TeXnicien''}, both centred, the text
-\foreignlanguage{frenchb}{``Voici un texte accentué en français!''}, and a page number at the bottom centre.
+A new panel opens between the typing area and the status bar: the \emph{output panel\index{output panel}}, labeled \emph{Log\index{log}}; everything {\LaTeX} is doing is displayed there\footnote{see page \pageref{fig:consoleOutput} for a picture of the panel}. When {\LaTeX} finishes this panel disappears (if there no error occurred) and a new window will appear; in this new window, the \emph{Preview window\index{preview window}}\index{document!previewing}, you can see a page with a title \foreignlanguage{french}{``Premier document''} followed by the name of the author \foreignlanguage{french}{``Un TeXnicien''}, both centred, the text
+\foreignlanguage{french}{``Voici un texte accentué en français!''}, and a page number at the bottom centre.
 
 Notice that the mouse cursor is like a magnifier in the new window. If you press (and hold) the left button of the mouse you can see the text under the magnifier much bigger (it is a magnifier, isn't it!); you can move the magnifier and so inspect the text in detail.
 
@@ -99,7 +99,7 @@ Let's do some experiments to show the effect of these instructions. For this, we
 
 Comment out the line \verb|\usepackage[utf8]{inputenc}|, and typeset the file. You should see that the accented characters are now displayed incorrectly in the preview window. If, in addition, you also comment out the line \verb|\usepackage[frenchb]{babel}|, {\LaTeX} will give an error. Just hit \Return to continue the typesetting.
 
-%Comment out the line \verb|\usepackage[utf8]{inputenc}|, and typeset the file. You should see that the accented characters are now incorrect in the preview window. If you now comment out the line \verb|\usepackage[frenchb]{babel}|, {\LaTeX} will give an error.  Just hit \Return to continue the typesetting.
+%Comment out the line \verb|\usepackage[utf8]{inputenc}|, and typeset the file. You should see that the accented characters are now incorrect in the preview window. If you now comment out the line \verb|\usepackage[french]{babel}|, {\LaTeX} will give an error.  Just hit \Return to continue the typesetting.
 
 \needspace{3\baselineskip}
 After these experiments, let's modify the text as follows:

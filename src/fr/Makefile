@@ -40,7 +40,7 @@ dist : dist-pdf dist-html
 
 dist-pdf : manuel.pdf
 	@mkdir -p ../../pdf/$(LANG)
-	@$(CP) manuel.pdf ../../pdf/$(LANG)/TeXworks-manuel-$(LANG).pdf
+	@$(CP) manuel.pdf ../../pdf/$(LANG)/TeXworks-manual-$(LANG).pdf
 
 dist-html :
 	$(MAKE) -C html dist

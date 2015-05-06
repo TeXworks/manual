@@ -8,6 +8,11 @@ IMAGES = $(Logos) $(EpsFromPdf) $(EpsFromPng)
 
 HTOPTS = "manual,info,2,imgdir:images/,sec-filename,next,index=2,url-enc" "" "-S*"
 
+# Ghostscript 9.14/9.15 dropped the 'epswrite' output device in favor of the new
+# 'eps2write' output device. Prefer the latter, but fallback to the former for
+# older Ghostscript versions.
+GS_DEVICE = $(shell LANG=C; gs -h | grep -o eps2write || echo epswrite)
+
 WINDOWS = $(if $(filter .exe,$(suffix $(SHELL))),"y")
 SUPRESSOUT = > $(if $(WINDOWS),nul,/dev/null)
 CP = $(if $(WINDOWS),copy,cp)
@@ -47,7 +52,7 @@ images/example.png : ../images/example.pdf
 images/%.eps : ../images/%.pdf
 	@echo "Creating image $@ (from $<)"
 	@mkdir -p images
-	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=epswrite -sOutputFile="$@" "$<" $(SUPRESSOUT)
+	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=$(GS_DEVICE) -sOutputFile="$@" "$<" $(SUPRESSOUT)
 images/%.eps : ../images/%.png
 	@echo "Creating image $@ (from $<)"
 	@mkdir -p images

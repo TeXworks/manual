@@ -2,7 +2,10 @@ LANGS = $(patsubst %/,manual-%,$(wildcard */))
 DISTLANGS = $(patsubst manual-%,dist-%,$(LANGS))
 CLEANLANGS = $(patsubst manual-%,clean-%,$(LANGS))
 DISTCLEANLANGS = $(patsubst manual-%,dist-clean-%,$(LANGS))
-REVNO = $(shell LANG=C; svn info | grep '^Revision: ' | sed 's/Revision: //')
+
+# Be rather specific with '--git-dir' as we do not want to pick up an unrelated
+# outer Git repository in case the TeXworks manual sources come from an archive.
+GIT_COMMIT = $(shell LANG=C; git --git-dir=../.git rev-parse --short HEAD)
 
 .PHONY : all clean dist dist-clean $(LANGS) $(DISTLANGS) $(CLEANLANGS) $(DISTCLEANLANGS)
 
@@ -11,7 +14,7 @@ all : $(LANGS)
 clean : $(CLEANLANGS)
 
 dist : $(DISTLANGS)
-	cd ../html && zip -r TeXworks-manual-html-r$(REVNO).zip TeXworks-manual
+	cd ../html && zip -r TeXworks-manual-html-$(GIT_COMMIT).zip TeXworks-manual
 
 dist-clean : $(DISTCLEANLANGS)
 

@@ -1,4 +1,4 @@
-LANG=$(notdir $(abspath ..))
+MANUAL_LANG=$(notdir $(abspath ..))
 
 Logos = images/Linux.png images/Mac.png images/Windows.png images/TeXworks.png images/example.png
 EpsFromPdf = images/MacCmdKey.eps images/MacOptKey.eps images/interface-summary.eps images/consoleOutput.eps images/errorParsingScript.eps images/LMB.eps images/RMB.eps
@@ -79,8 +79,8 @@ dist-clean : clean
 dist : dist-html
 
 dist-html : index.html tidy.cfg manual.css
-	@mkdir -p ../../../html/TeXworks-manual/$(LANG)/images
-	@$(CP) images/*.png ../../../html/TeXworks-manual/$(LANG)/images
-	@$(CP) *.html *.css tw-help-title.txt ../../../html/TeXworks-manual/$(LANG)/
-	@tidy -config tidy.cfg ../../../html/TeXworks-manual/$(LANG)/*.html || true
+	@mkdir -p ../../../html/TeXworks-manual/$(MANUAL_LANG)/images
+	@$(CP) images/*.png ../../../html/TeXworks-manual/$(MANUAL_LANG)/images
+	@$(CP) *.html *.css tw-help-title.txt ../../../html/TeXworks-manual/$(MANUAL_LANG)/
+	@tidy -config tidy.cfg ../../../html/TeXworks-manual/$(MANUAL_LANG)/*.html || true
 

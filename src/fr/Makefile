@@ -1,4 +1,4 @@
-LANG=$(notdir $(abspath .))
+MANUAL_LANG=$(notdir $(abspath .))
 
 SYNCTEX = -synctex=1
 
@@ -39,8 +39,8 @@ recursive-dist-clean : dist-clean
 dist : dist-pdf dist-html
 
 dist-pdf : manuel.pdf
-	@mkdir -p ../../pdf/$(LANG)
-	@$(CP) manuel.pdf ../../pdf/$(LANG)/TeXworks-manual-$(LANG).pdf
+	@mkdir -p ../../pdf/$(MANUAL_LANG)
+	@$(CP) manuel.pdf ../../pdf/$(MANUAL_LANG)/TeXworks-manual-$(MANUAL_LANG).pdf
 
 dist-html :
 	$(MAKE) -C html dist

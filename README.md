@@ -1,7 +1,9 @@
 Introduction
 ================================================================================
 
-This package contains the sources to typeset "A short manual for TeXworks".
+This package contains the sources to typeset "A short manual for TeXworks",
+originally written by Alain Delmotte and published at
+http://www.leliseron.org/texworks/.
 
 TeXworks is an open-source, cross-platform TeX editor designed to lower the
 entry barrier to the TeX world. See http://www.tug.org/texworks/ for more

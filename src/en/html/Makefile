@@ -36,19 +36,19 @@ index.tex : ../manual.tex
 
 images/Linux.png : ../images/Linux.pdf
 	@mkdir -p images
-	@convert ../images/Linux.pdf -resize 48x48 images/Linux.png $(SUPRESSOUT)
+	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pngalpha -sstdout=%stderr -sOutputFile=- "$<" 2$(SUPRESSOUT) | convert png:- -resize 48x48 $@ $(SUPRESSOUT)
 images/Mac.png : ../images/Mac.pdf
 	@mkdir -p images
-	@convert ../images/Mac.pdf -resize 48x48 images/Mac.png $(SUPRESSOUT)
+	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pngalpha -sstdout=%stderr -sOutputFile=- "$<" 2$(SUPRESSOUT) | convert png:- -resize 48x48 $@ $(SUPRESSOUT)
 images/Windows.png : ../images/Windows.pdf
 	@mkdir -p images
-	@convert ../images/Windows.pdf -resize 48x48 images/Windows.png $(SUPRESSOUT)
+	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pngalpha -sstdout=%stderr -sOutputFile=- "$<" 2$(SUPRESSOUT) | convert png:- -resize 48x48 $@ $(SUPRESSOUT)
 images/TeXworks.png : ../images/TeXworks.png
 	@mkdir -p images
 	@convert ../images/TeXworks.png -resize 100x100 images/TeXworks.png $(SUPRESSOUT)
 images/example.png : ../images/example.pdf
 	@mkdir -p images
-	@convert -density 300 "$<"  -resize 48x48 "$@" $(SUPRESSOUT)
+	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pngalpha -sstdout=%stderr -sOutputFile=- "$<" 2$(SUPRESSOUT) | convert png:- -resize 48x48 $@ $(SUPRESSOUT)
 images/%.eps : ../images/%.pdf
 	@echo "Creating image $@ (from $<)"
 	@mkdir -p images

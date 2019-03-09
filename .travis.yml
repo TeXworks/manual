@@ -1,0 +1,16 @@
+language: minimal
+
+addons:
+  apt:
+    packages:
+    - ghostscript
+    - texlive-latex-base
+    - texlive-latex-extra
+    - texlive-luatex
+    - tex4ht
+    - texlive-fonts-recommended
+    - lmodern
+    - texlive-lang-french
+
+script:
+  - make

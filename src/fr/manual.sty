@@ -20,6 +20,9 @@
 	\RequirePackage{tocbibind}
 	\RequirePackage[unbalanced,totoc]{idxlayout}
 	\RequirePackage{footmisc}
+	% some buggy versions of microtype require luatexbase
+	% https://tex.stackexchange.com/a/476742
+	\RequirePackage{luatexbase}
 	\RequirePackage[final]{microtype}
 	\setlength{\footnotemargin}{.7em}
 	\setlength{\footnotesep}{0.1ex}

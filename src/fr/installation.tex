@@ -7,10 +7,10 @@
 
 \Tw{} n'est qu'un éditeur de texte; pour pouvoir créer des documents avec \AllTeX{} et les composer en PDF, nous avons besoin de ce qu'on appelle une distribution \TeX\index{TeX distribution@{\TeX} distribution}\index{TeX@\TeX!distribution|see {{\TeX} distribution}}. C'est un ensemble de programmes et autres fichiers complémentaires qui seront appelés automatiquement par \Tw{} durant son travail. Il faut donc installer une distribution; nous le ferrons \emph{avant} de lancer \Tw{} la première fois pour que celui-ci trouve automatiquement ce dont il a besoin.
 
-On peut utiliser \textbf{TeX~Live\index{TeX distribution@{\TeX} distribution!TeX~Live}} (\url{http://www.tug.org/texlive/}), une combinaison de teTex, MacTeX et XEmTeX, est disponible pour les trois systèmes d'exploitation (Linux, Mac OS X, Windows). La dernière version disponible est la TeXlive 2012. Notez que vous avez besoin d'une distribution relativement récente de TeX~Live (2012 ou suivante au moment d'écriture) pour utiliser toutes les possibilités de {\Tw}.
+On peut utiliser \textbf{TeX~Live\index{TeX distribution@{\TeX} distribution!TeX~Live}} (\url{http://www.tug.org/texlive/}), une combinaison de teTex, MacTeX et XEmTeX, est disponible pour les trois systèmes d'exploitation (Linux, Mac OS X, Windows). Notez que vous avez besoin d'une distribution relativement récente de TeX~Live (2012 ou suivante au moment d'écriture) pour utiliser toutes les possibilités de {\Tw}.
 
 \begin{OSLinux}
-Pour Linux\index{TeX distribution@{\TeX} distribution!Linux}: la plupart des distributions ont une distribution \TeX, elle peut cependant ne pas être installée de base et il faudra utiliser les outils de gestion Linux pour le faire. Outre TeXlive on peut utiliser \textbf{teTex} (\url{http://www.tug.org/teTeX/}) sur laquelle TeXlive est basée. 
+Pour Linux\index{TeX distribution@{\TeX} distribution!Linux}: la plupart des distributions ont une distribution \TeX, elle peut cependant ne pas être installée de base et il faudra utiliser les outils de gestion Linux pour le faire. En outre, on peut télécharger et installer TeX~Live directement à partir de \url{http://www.tug.org/texlive/}.
 \end{OSLinux}
 \vspace{6pt} 
 
@@ -50,11 +50,7 @@ Une fois la compilation réussie, lancer \Tw{}. Les dossiers \path{.TeXworks}\in
 
 \section{Sous Mac OS\index{installation!Mac}}
 
-MacTeX 2010 contient déjà un module \Tw. Dès lors il est préférable d'installer \Tw{} sur un Mac en utilisant le gestionnaire de modules de votre distribution. Dans ce cas, vous pouvez sauter les quelques paragraphes qui suivent. Mais cependant, veillez lire la fin de la section car elle contient des informations importantes sur le paramétrage de \Tw{} suivant vos besoins.
-
-Si vous désirez obtenir une version \og officielle\fg{}, récupérez \Tw{} en téléchargeant l'archive du site de \Tw{} \url{htp://tug.org/texworks/} après installation de la distribution {\TeX}.
-
-Vous devez récupérer \path{TeXworks-Mac-0.3r567.zip}\footnote{version disponible au moment de l'écriture de ce manuel. Voyez la page centrale du logiciel et cliquer le lien de téléchargement.}, c'est un fichier qui comprend tout ce qui est nécessaire.
+Si vous désirez obtenir une version \og officielle\fg{}, récupérez \Tw{} en téléchargeant l'archive du site de \Tw{} \url{http://tug.org/texworks/} après installation de la distribution {\TeX}.
 
 C'est un module autonome, \texttt{.app}, qui ne requière pas l'installation de fichiers Qt dans \path{/Library/Frameworks}, ou d'autres librairies dans \path{/usr/local/lib}. Copiez juste l'\path{.app} où vous voulez et lancez le.
 

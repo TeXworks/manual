@@ -8,10 +8,10 @@
 
 \Tw{} is only a text editor; to be able to create documents with \AllTeX{} and to typeset them to PDF, we also need what is called a \emph{{\TeX} distribution}\index{TeX distribution@{\TeX} distribution}\index{TeX@\TeX!distribution|see {{\TeX} distribution}}. This is a collection of programs and other files which will be automatically called by {\Tw} during its work. Thus, you need to install a distribution: we will do that \emph{before} starting {\Tw} for the first time, as this way, {\Tw} will automatically find what it needs.
 
-\textbf{TeX~Live}\index{TeX distribution@{\TeX} distribution!TeX~Live} (\url{http://www.tug.org/texlive/}), a combination of teTeX, MacTeX and XEmTeX, is available for all three operating systems (Linux, Mac OS X, Windows). The current version is TeX~Live 2010. Note that you need a reasonably recent version of TeX~Live (2008 or later at the time of writing) to use all features of {\Tw}.
+\textbf{TeX~Live}\index{TeX distribution@{\TeX} distribution!TeX~Live} (\url{http://www.tug.org/texlive/}), a combination of teTeX, MacTeX and XEmTeX, is available for all three operating systems (Linux, Mac OS X, Windows). Note that you need a reasonably recent version of TeX~Live (2012 or later at the time of writing) to use all features of {\Tw}.
 
 \begin{OSLinux}
-For Linux\index{TeX distribution@{\TeX} distribution!Linux}: most Linux distributions include a {\TeX} distribution, but it may not be installed by default and you will have to use the Linux package management tools to do that. As an alternative to TeX~Live, one can use \textbf{teTeX} (\url{http://www.tug.org/teTeX/}, a predecessor system to TeX~Live.
+For Linux\index{TeX distribution@{\TeX} distribution!Linux}: most Linux distributions include a {\TeX} distribution, but it may not be installed by default and you will have to use the Linux package management tools to do that. Alternatively, you can also download and install TeX~Live directly from \url{http://www.tug.org/texlive/}.
 \end{OSLinux}
 
 \begin{OSMac}
@@ -49,13 +49,9 @@ Once the program is installed, start {\Tw}. The folders \path{.TeXworks}\index{f
 
 \section{Under Mac OS X}\index{installation!Mac}
 
-MacTeX 2010 already contains {\Tw} as a package. So, the preferred way of installing {\Tw} on the Mac is to use the package manager of your distribution. In this case, you can skip the next few paragraphs. Be sure to read the end of this section, though, as it provides important information about customizing {\Tw} to your needs.
+If you want to obtain an ``official'' version, obtain {\Tw} by downloading the archive from the {\Tw} web site \url{http://tug.org/texworks/} after the installation of the {\TeX} distribution.
 
-If you want to obtain an ``official'' version, obtain {\Tw} by downloading the archive from the {\Tw} web site \url{htp://tug.org/texworks/} after the installation of the {\TeX} distribution.
-
-You need to get \path{TeXworks-Mac-0.3r567.zip}\footnote{Version at the time of writing this manual.} which contains everything you need.
-
-It is a standalone \texttt{.app} package that does not require any Qt files installed into \path{/Library/Frameworks}, or other libraries into \path{/usr/local/lib}. Just copy the \path{.app} anywhere you like and run it.
+It comes as a standalone \texttt{.app} package that does not require any Qt files installed into \path{/Library/Frameworks}, or other libraries into \path{/usr/local/lib}. Just copy the \path{.app} anywhere you like and run it.
 
 On Mac OS X, the {\Tw} resource\index{folder!resource Mac} folder will be created in your \path{Library} folder (\path{~/Library/TeXworks/}), inside your home directory. Preferences are stored in \path{~/Library/Preferences/org.tug.TeXworks.plist}
 which you can delete if you ever suspect it is causing problems.

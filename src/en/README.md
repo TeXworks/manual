@@ -43,7 +43,7 @@ If you intend to typeset in the HTML format, you also need tex4ht.
 Disclaimer
 ================================================================================
 
-Copyright (C) 2010-2015  Alain Delmotte, Stefan Löffler, and contributors.
+Copyright (C) 2010-2019  Alain Delmotte, Stefan Löffler, and contributors.
 Some rights reserved.
 
 Unless noted otherwise, the icons in the images/ folder are taken from the

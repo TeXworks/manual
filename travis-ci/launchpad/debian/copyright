@@ -1,0 +1,22 @@
+This package was debianized by <AUTHOR> on <DATE>
+
+It was downloaded from https://github.com/TeXworks/manual/
+
+Upstream Authors:
+
+    Alain Delmotte, Stefan Löffler, and others
+
+Copyright:
+
+    Copyright (C) 2009 Alain Delmotte
+
+License:
+
+    You are free to distribute this software under the terms of
+    the GNU General Public License version 2.
+    On Debian systems, the complete text of the GNU General Public
+    License v2 can be found in the file `/usr/share/common-licenses/GPL-2'.
+
+The Debian packaging is copyright 2020, Stefan Löffler <st.loeffler@gmail.com> and
+is licensed under the GPLv2, see `/usr/share/common-licenses/GPL-2'.
+

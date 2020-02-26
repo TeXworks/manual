@@ -14,6 +14,22 @@ addons:
     - imagemagick
     - netpbm
     - tidy
+    - ubuntu-dev-tools
+    - debhelper
+    - dput
+    - fakeroot
+    - python-paramiko
 
 script:
   - make dist
+
+after_success:
+  - ${TRAVIS_BUILD_DIR}/travis-ci/package.sh
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    on:
+      all_branches: true
+      condition: -f ${TRAVIS_BUILD_DIR}/travis-ci/launchpad/dput-launchpad.sh
+    script: sh "${TRAVIS_BUILD_DIR}/travis-ci/launchpad/dput-launchpad.sh"

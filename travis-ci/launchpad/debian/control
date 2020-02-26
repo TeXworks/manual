@@ -1,0 +1,28 @@
+Source: texworks-help
+Section: tex
+Priority: optional
+Maintainer: Stefan Löffler <st.loeffler@gmail.com>
+Build-Depends: debhelper (>= 9), texlive-latex-base, texlive-latex-extra, texlive-luatex, tex4ht, texlive-fonts-recommended, lmodern, texlive-lang-french, ghostscript, imagemagick, netpbm, zip
+Standards-Version: 3.9.2
+Homepage: https://github.com/TeXworks/manual
+Vcs-Git: https://github.com/TeXworks/manual.git
+Vcs-Browser: https://github.com/TeXworks/manual
+
+Package: texworks-help-en
+Architecture: all
+Recommends: texworks
+Description: English help files for TeXworks, a simple interface for working
+ with TeX documents.
+ .
+ For further information, see https://github.com/TeXworks/manual/ or 
+ http://tug.org/texworks/
+
+Package: texworks-help-fr
+Architecture: all
+Recommends: texworks
+Description: French help files for TeXworks, a simple interface for working
+ with TeX documents.
+ .
+ For further information, see https://github.com/TeXworks/manual/ or 
+ http://tug.org/texworks/
+

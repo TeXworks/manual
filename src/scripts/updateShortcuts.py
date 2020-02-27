@@ -1,8 +1,11 @@
 #!/usr/bin/python
 
-SVNDIR="../../trunk/"
+TWDIR="../../../texworks/"
 
 from xml.etree import ElementTree
+
+def makeLaTeXsafe(s):
+	return s.replace("\\", "\\textbackslash ").replace("_", "\\_").replace("{", "\\{").replace("}", "\\}").replace("&", "\\&").replace("#RET#", "{\\AutoCompRet}").replace("#INS#", "{\\AutoCompIns}").replace("#", "\\#").replace("-", "{-}")
 
 
 def shortcutsToFile(src, out):
@@ -10,7 +13,7 @@ def shortcutsToFile(src, out):
 	l = 0
 
 	tree = ElementTree.parse(src)
-	for action in tree.findall("//action"):
+	for action in tree.findall(".//action"):
 		name = None
 		key = None
 		for prop in action.findall("property"):
@@ -20,25 +23,24 @@ def shortcutsToFile(src, out):
 				key = prop.find("string").text
 		if name and key:
 			res.append((key, name))
-			if len(key) > l: l = len(key)
+			if len(makeLaTeXsafe(key)) > l: l = len(makeLaTeXsafe(key))
 
 	res.sort(key = lambda x: x[0])
 
-	fmt = "{0:" + str(l + 1) + "}& {1} \\\\\n"
+	fmt = "{0:" + str(l + 1) + r"}& {1} \\"
 	
-	f = open(out, 'w')
-	f.write("\\begin{longtable}{Pl}\n")
-	f.write("\\toprule\n")
-	f.write("Shortcut & Action \\\\\n")
-	f.write("\\midrule \\endhead\n")
+	with open(out, 'w') as f:
+		print(r"\begin{longtable}{Pl}", file = f)
+		print(r"\toprule", file = f)
+		print(fmt.format('Shortcut', 'Action'), file = f)
+		print(r"\midrule \endhead", file = f)
 
-	for (key, name) in res:
-		f.write(fmt.format(key, name))
+		for (key, name) in res:
+			print(fmt.format(makeLaTeXsafe(key), makeLaTeXsafe(name)), file = f)
 
-	f.write("\\bottomrule\n")
-	f.write("\\end{longtable}\n")
-	f.close()
+		print(r"\bottomrule", file = f)
+		print(r"\end{longtable}", file = f)
 
-shortcutsToFile(SVNDIR + "src/TeXDocument.ui", "shortcutsTeXDocument.tex")
-shortcutsToFile(SVNDIR + "src/PDFDocument.ui", "shortcutsPDFDocument.tex")
+shortcutsToFile(TWDIR + "src/TeXDocumentWindow.ui", "shortcutsTeXDocument.tex")
+shortcutsToFile(TWDIR + "src/PDFDocumentWindow.ui", "shortcutsPDFDocument.tex")
 

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-SVNDIR="../../trunk/"
+TWDIR="../../../texworks/"
 
 from xml.etree import ElementTree
 
@@ -9,21 +9,20 @@ def makeLaTeXsafe(s):
 	return s.replace("\\", "\\textbackslash ").replace("_", "\\_").replace("{", "\\{").replace("}", "\\}").replace("&", "\\&").replace("#RET#", "{\\AutoCompRet}").replace("#INS#", "{\\AutoCompIns}").replace("#", "\\#").replace("-", "{-}")
 
 def autocompletionToFile(src, out):
-	f = open(src, 'r')
-	rules = {}
-	for line in f:
-		if line[0] == '%': continue
-		line = line.strip().split(':=')
-		if len(line) == 2:
-			(key, value) = line
-		else:
-			key = value = line[0]
-		rules[key] = value
-	f.close()
+	with open(src, 'r') as f:
+		rules = {}
+		for line in f:
+			if line[0] == '%': continue
+			line = line.strip().split(':=')
+			if len(line) == 2:
+				(key, value) = line
+			else:
+				key = value = line[0]
+			rules[key] = value
 	
 	items = []
 	n1 = n2 = 0
-	for key in rules.keys():
+	for key in list(rules.keys()):
 		if not key in rules: continue
 		v1 = v2 = ''
 		v3 = rules[key]
@@ -44,23 +43,20 @@ def autocompletionToFile(src, out):
 		if len(makeLaTeXsafe(v2)) > n2: n2 = len(makeLaTeXsafe(v2))
 		items.append((v1, v2, v3))
 	
-	items.sort(cmp = lambda x, y: cmp(x[2].lower(), y[2].lower()))
-	fmt = "{0:" + str(n1) + "} & {1:" + str(n2) + "} & {2} \\\\\n"
-	f = open(out, 'w')
+	items.sort(key = lambda x: x[2].lower())
+	fmt = "{0:" + str(n1) + "} & {1:" + str(n2) + r"} & {2} \\"
 
-	f.write("\\begin{longtable}{>{\\footnotesize}p{15mm}>{\\footnotesize}p{15mm}>{\\footnotesize}p{95mm}}\n")
-	f.write("\\toprule\n")
-#	f.write("Shortcut & Action \\\\\n")
-#	f.write("\\midrule \\endhead\n")
+	with open(out, 'w') as f:
+		print(r"\begin{longtable}{>{\footnotesize}p{15mm}>{\footnotesize}p{15mm}>{\footnotesize}p{95mm}}", file = f)
+		print(r"\toprule", file = f)
 
-	for (v1, v2, v3) in items:
-		f.write(fmt.format(makeLaTeXsafe(v1), makeLaTeXsafe(v2), makeLaTeXsafe(v3)))
+		for (v1, v2, v3) in items:
+			print(fmt.format(makeLaTeXsafe(v1), makeLaTeXsafe(v2), makeLaTeXsafe(v3)), file = f)
 
-	f.write("\\bottomrule\n")
-	f.write("\\end{longtable}\n")
-	f.close()
+		print(r"\bottomrule", file = f)
+		print(r"\end{longtable}", file = f)
 
 
-autocompletionToFile(SVNDIR + "res/resfiles/completion/tw-basic.txt", "autocompletionBasic.tex")
-autocompletionToFile(SVNDIR + "res/resfiles/completion/tw-latex.txt", "autocompletionLatex.tex")
+autocompletionToFile(TWDIR + "res/resfiles/completion/tw-basic.txt", "autocompletionBasic.tex")
+autocompletionToFile(TWDIR + "res/resfiles/completion/tw-latex.txt", "autocompletionLatex.tex")
 

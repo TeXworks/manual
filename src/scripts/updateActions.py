@@ -1,11 +1,11 @@
 #!/usr/bin/python
 
-SVNDIR="../../trunk/"
+TWDIR="../../../texworks/"
 
 from xml.etree import ElementTree
 
 def makeLaTeXsafe(s):
-	return s.replace("_", "\\_")
+	return s.replace("_", r"\_")
 
 def format2Columns(items):
 	ret = ""
@@ -13,29 +13,29 @@ def format2Columns(items):
 	if n % 2 == 1: n += 1
 	
 	l = 0
-	for i in range(n / 2):
+	for i in range(int(n / 2)):
 		if len(makeLaTeXsafe(items[i])) > l: l = len(makeLaTeXsafe(items[i]))
 	
 	fmt = "{0:" + str(l + 1) + "}& "
-	for i in range(n / 2):
+	for i in range(int(n / 2)):
 		ret += fmt.format(makeLaTeXsafe(items[i]))
 		if i + n / 2 < len(items):
-			ret += makeLaTeXsafe(items[i + n / 2]) + " "
+			ret += makeLaTeXsafe(items[i + int(n / 2)]) + " "
 		ret += "\\\\\n"
-	return ret
+	return ret.strip()
 
 
 acts = []
 
 def getActions(src, out):
 	tree = ElementTree.parse(src)
-	for action in tree.findall("//action"):
+	for action in tree.findall(".//action"):
 		if action.get("name"): acts.append(action.get("name"))
 	
 	menus = {}
 	labels = {}
 	# parse all menus
-	for menu in tree.findall("//widget"):
+	for menu in tree.findall(".//widget"):
 		if menu.get("class") != "QMenu": continue
 		name = menu.get("name")
 		menus[name] = []
@@ -49,7 +49,7 @@ def getActions(src, out):
 	finished = False
 	while not finished:
 		finished = True
-		for name in menus.keys():
+		for name in list(menus.keys()):
 			if name in menus:
 				i = 0
 				while i < len(menus[name]):
@@ -63,25 +63,25 @@ def getActions(src, out):
 					else:
 						i += 1
 	
-	labels = labels.items()
+	labels = list(labels.items())
 	labels.sort(key = lambda x: x[1])
-	f = open(out, 'w')
-	f.write("\\begin{longtable}{QQ}\n")
-	f.write("\\toprule\n")
+	if out is not None:
+		with open(out, 'w') as f:
+			print(r'\begin{longtable}{QQ}', file = f)
+			print(r'\toprule', file = f)
 
-	i = 0
-	for (key, label) in labels:
-		if not key in menus: continue
-		if i > 0: f.write("%\n\\midrule\n%\n")
-		f.write("\\multicolumn{2}{c}{" + makeLaTeXsafe(label) + "} \\\\\n")
-		items = menus[key]
-		items.sort()
-		f.write(format2Columns(items))
-		i += 1
+			i = 0
+			for (key, label) in labels:
+				if not key in menus: continue
+				if i > 0: print("%\n\\midrule\n%", file = f)
+				print(r"\multicolumn{{2}}{{c}}{{{label}}} \\".format(label = makeLaTeXsafe(label)), file = f)
+				items = menus[key]
+				items.sort()
+				print(format2Columns(items), file = f)
+				i += 1
 
-	f.write("\\bottomrule\n")
-	f.write("\\end{longtable}\n")
-	f.close()
+			print(r"\bottomrule", file = f)
+			print(r"\end{longtable}", file = f)
 		
 #	for menu in tree.findall("/widget/widget/widget"):
 #		if menu.get("class") != "QMenu": continue
@@ -91,20 +91,18 @@ def getActions(src, out):
 
 #		break
 
-getActions(SVNDIR + "src/TeXDocument.ui", "menuactionsTeXDocument.tex")
-getActions(SVNDIR + "src/PDFDocument.ui", "menuactionsPDFDocument.tex")
+getActions(TWDIR + "src/TeXDocumentWindow.ui", "menuactionsTeXDocument.tex")
+getActions(TWDIR + "src/PDFDocumentWindow.ui", "menuactionsPDFDocument.tex")
+getActions(TWDIR + "src/CompletingEdit.ui", None)
 
 
 # make unique & sort
 acts = list(set(acts))
 acts.sort()
 
-f = open("actionsAlphabetical.tex", 'w')
-f.write("\\begin{longtable}{QQ}\n")
-f.write("\\toprule\n")
-f.write(format2Columns(acts))
-f.write("\\bottomrule\n")
-f.write("\\end{longtable}\n")
-
-f.close()
-
+with open("actionsAlphabetical.tex", 'w') as f:
+	print(r"\begin{longtable}{QQ}", file = f)
+	print(r"\toprule", file = f)
+	print(format2Columns(acts), file = f)
+	print(r"\bottomrule", file = f)
+	print(r"\end{longtable}", file = f)

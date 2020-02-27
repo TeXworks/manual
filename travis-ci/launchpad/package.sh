@@ -29,14 +29,11 @@ if [ -z "${DEB_MAINTAINER_NAME}" -o -z "${DEB_MAINTAINER_EMAIL}" -o -z "${DEB_PA
 	exit 0
 fi
 
-ls "${TRAVIS_BUILD_DIR}/travis-ci/launchpad/"
-
 print_info "Decrypt keys"
-openssl aes-256-cbc -K $encrypted_e8757174037a_key -iv $encrypted_e8757174037a_iv -in "${TRAVIS_BUILD_DIR}/travis-ci/launchpad/keys.tar.enc" -out "${TRAVIS_BUILD_DIR}/travis-ci/launchpad/keys.tar" -d
-
-ls "${TRAVIS_BUILD_DIR}/travis-ci/launchpad/"
-
-tar -C "${TRAVIS_BUILD_DIR}/travis-ci/launchpad/" -x -v -f keys.tar
+cd "${TRAVIS_BUILD_DIR}/travis-ci/launchpad/"
+openssl aes-256-cbc -K $encrypted_e8757174037a_key -iv $encrypted_e8757174037a_iv -in keys.tar.enc -out keys.tar -d
+tar xvf keys.tar
+cd "${TRAVIS_BUILD_DIR}"
 
 print_info "Import signing key"
 gpg --import "${TRAVIS_BUILD_DIR}/travis-ci/launchpad/key.asc"

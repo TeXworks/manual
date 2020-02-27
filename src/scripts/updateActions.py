@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-SVNDIR="../../../trunk/"
+SVNDIR="../../trunk/"
 
 from xml.etree import ElementTree
 
@@ -91,15 +91,15 @@ def getActions(src, out):
 
 #		break
 
-getActions(SVNDIR + "src/TeXDocument.ui", "../menuactionsTeXDocument.tex")
-getActions(SVNDIR + "src/PDFDocument.ui", "../menuactionsPDFDocument.tex")
+getActions(SVNDIR + "src/TeXDocument.ui", "menuactionsTeXDocument.tex")
+getActions(SVNDIR + "src/PDFDocument.ui", "menuactionsPDFDocument.tex")
 
 
 # make unique & sort
 acts = list(set(acts))
 acts.sort()
 
-f = open("../actionsAlphabetical.tex", 'w')
+f = open("actionsAlphabetical.tex", 'w')
 f.write("\\begin{longtable}{QQ}\n")
 f.write("\\toprule\n")
 f.write(format2Columns(acts))

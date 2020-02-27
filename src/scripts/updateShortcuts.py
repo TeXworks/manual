@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-SVNDIR="../../../trunk/"
+SVNDIR="../../trunk/"
 
 from xml.etree import ElementTree
 
@@ -39,6 +39,6 @@ def shortcutsToFile(src, out):
 	f.write("\\end{longtable}\n")
 	f.close()
 
-shortcutsToFile(SVNDIR + "src/TeXDocument.ui", "../shortcutsTeXDocument.tex")
-shortcutsToFile(SVNDIR + "src/PDFDocument.ui", "../shortcutsPDFDocument.tex")
+shortcutsToFile(SVNDIR + "src/TeXDocument.ui", "shortcutsTeXDocument.tex")
+shortcutsToFile(SVNDIR + "src/PDFDocument.ui", "shortcutsPDFDocument.tex")
 

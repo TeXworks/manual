@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-SVNDIR="../../../trunk/"
+SVNDIR="../../trunk/"
 
 from xml.etree import ElementTree
 
@@ -61,8 +61,6 @@ def autocompletionToFile(src, out):
 	f.close()
 
 
-#shortcutsToFile(SVNDIR + "src/TeXDocument.ui", "../shortcutsTeXDocument.tex")
-#shortcutsToFile(SVNDIR + "src/PDFDocument.ui", "../shortcutsPDFDocument.tex")
-autocompletionToFile(SVNDIR + "res/resfiles/completion/tw-basic.txt", "../autocompletionBasic.tex")
-autocompletionToFile(SVNDIR + "res/resfiles/completion/tw-latex.txt", "../autocompletionLatex.tex")
+autocompletionToFile(SVNDIR + "res/resfiles/completion/tw-basic.txt", "autocompletionBasic.tex")
+autocompletionToFile(SVNDIR + "res/resfiles/completion/tw-latex.txt", "autocompletionLatex.tex")
 

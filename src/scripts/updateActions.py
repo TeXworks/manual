@@ -3,27 +3,7 @@
 TWDIR="../../../texworks/"
 
 from xml.etree import ElementTree
-
-def makeLaTeXsafe(s):
-	return s.replace("_", r"\_")
-
-def format2Columns(items):
-	ret = ""
-	n = len(items)
-	if n % 2 == 1: n += 1
-	
-	l = 0
-	for i in range(int(n / 2)):
-		if len(makeLaTeXsafe(items[i])) > l: l = len(makeLaTeXsafe(items[i]))
-	
-	fmt = "{0:" + str(l + 1) + "}& "
-	for i in range(int(n / 2)):
-		ret += fmt.format(makeLaTeXsafe(items[i]))
-		if i + n / 2 < len(items):
-			ret += makeLaTeXsafe(items[i + int(n / 2)]) + " "
-		ret += "\\\\\n"
-	return ret.strip()
-
+from LaTeX import *
 
 acts = []
 
@@ -66,23 +46,19 @@ def getActions(src, out):
 	labels = list(labels.items())
 	labels.sort(key = lambda x: x[1])
 	if out is not None:
+
+		i = 0
+		items = []
+		for (key, label) in labels:
+			if not key in menus: continue
+			if i > 0: items.append(VerbatimLaTeX("%\n\\midrule\n%"))
+			items.append(VerbatimLaTeX(r"\multicolumn{{2}}{{c}}{{{label}}} \\".format(label = makeLaTeXsafe(label))))
+			items += columnize(sorted(menus[key]))
+			i += 1
+
 		with open(out, 'w') as f:
-			print(r'\begin{longtable}{QQ}', file = f)
-			print(r'\toprule', file = f)
+			print(formatLaTeXTable(items, 'QQ'), file = f)
 
-			i = 0
-			for (key, label) in labels:
-				if not key in menus: continue
-				if i > 0: print("%\n\\midrule\n%", file = f)
-				print(r"\multicolumn{{2}}{{c}}{{{label}}} \\".format(label = makeLaTeXsafe(label)), file = f)
-				items = menus[key]
-				items.sort()
-				print(format2Columns(items), file = f)
-				i += 1
-
-			print(r"\bottomrule", file = f)
-			print(r"\end{longtable}", file = f)
-		
 #	for menu in tree.findall("/widget/widget/widget"):
 #		if menu.get("class") != "QMenu": continue
 #		print menu.get("name")
@@ -101,8 +77,4 @@ acts = list(set(acts))
 acts.sort()
 
 with open("actionsAlphabetical.tex", 'w') as f:
-	print(r"\begin{longtable}{QQ}", file = f)
-	print(r"\toprule", file = f)
-	print(format2Columns(acts), file = f)
-	print(r"\bottomrule", file = f)
-	print(r"\end{longtable}", file = f)
+	print(formatLaTeXTable(columnize(acts), 'QQ'), file = f)

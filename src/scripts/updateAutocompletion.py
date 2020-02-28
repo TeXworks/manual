@@ -2,11 +2,7 @@
 
 TWDIR="../../../texworks/"
 
-from xml.etree import ElementTree
-
-
-def makeLaTeXsafe(s):
-	return s.replace("\\", "\\textbackslash ").replace("_", "\\_").replace("{", "\\{").replace("}", "\\}").replace("&", "\\&").replace("#RET#", "{\\AutoCompRet}").replace("#INS#", "{\\AutoCompIns}").replace("#", "\\#").replace("-", "{-}")
+from LaTeX import *
 
 def autocompletionToFile(src, out):
 	with open(src, 'r') as f:
@@ -21,7 +17,6 @@ def autocompletionToFile(src, out):
 			rules[key] = value
 	
 	items = []
-	n1 = n2 = 0
 	for key in list(rules.keys()):
 		if not key in rules: continue
 		v1 = v2 = ''
@@ -39,23 +34,12 @@ def autocompletionToFile(src, out):
 				v2 = "\\" + key
 				del rules["\\" + key]
 		del rules[key]
-		if len(makeLaTeXsafe(v1)) > n1: n1 = len(makeLaTeXsafe(v1))
-		if len(makeLaTeXsafe(v2)) > n2: n2 = len(makeLaTeXsafe(v2))
 		items.append((v1, v2, v3))
 	
 	items.sort(key = lambda x: x[2].lower())
-	fmt = "{0:" + str(n1) + "} & {1:" + str(n2) + r"} & {2} \\"
 
 	with open(out, 'w') as f:
-		print(r"\begin{longtable}{>{\footnotesize}p{15mm}>{\footnotesize}p{15mm}>{\footnotesize}p{95mm}}", file = f)
-		print(r"\toprule", file = f)
-
-		for (v1, v2, v3) in items:
-			print(fmt.format(makeLaTeXsafe(v1), makeLaTeXsafe(v2), makeLaTeXsafe(v3)), file = f)
-
-		print(r"\bottomrule", file = f)
-		print(r"\end{longtable}", file = f)
-
+		print(formatLaTeXTable(items, r'>{\footnotesize}p{15mm}>{\footnotesize}p{15mm}>{\footnotesize}p{95mm}'), file = f)
 
 autocompletionToFile(TWDIR + "res/resfiles/completion/tw-basic.txt", "autocompletionBasic.tex")
 autocompletionToFile(TWDIR + "res/resfiles/completion/tw-latex.txt", "autocompletionLatex.tex")

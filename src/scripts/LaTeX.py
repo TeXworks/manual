@@ -13,7 +13,7 @@ def columnWidths(rows):
 	rv = []
 	for row in rows:
 		if isinstance(row, VerbatimLaTeX): continue
-		if len(row) > len(rv): rv += [0] * (len(row) - len(rv))
+		if len(row) > len(rv): rv += [1] * (len(row) - len(rv))
 		for iCol in range(len(row)):
 			if len(row[iCol]) > rv[iCol]: rv[iCol] = len(row[iCol])
 	return rv

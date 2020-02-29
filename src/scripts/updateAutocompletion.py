@@ -20,24 +20,17 @@ def load(src):
 
 def toList(rules):
 	items = []
-	for key in list(rules.keys()):
-		if not key in rules: continue
-		v1 = v2 = ''
-		v3 = rules[key]
-		if key == v3:
-			pass
-		elif key[0] == '\\':
-			v2 = key
-			if key[1:] in rules and rules[key[1:]] == v3:
-				v1 = key[1:]
-				del rules[key[1:]]
+
+	aliases = {}
+	for k, v in rules.items():
+		if not v in aliases: aliases[v] = []
+		if k != v: aliases[v].append(k)
+
+	for a in aliases:
+		uniqueAliases = set(s[1:] if s[0] == '\\' else s for s in aliases[a])
+		if len(uniqueAliases) == 0: items.append(('', '', a))
 		else:
-			v1 = key
-			if "\\" + key in rules and rules["\\" + key] == v3:
-				v2 = "\\" + key
-				del rules["\\" + key]
-		del rules[key]
-		items.append((v1, v2, v3))
+			items += [(ua if ua in aliases[a] else '', '\\' + ua if '\\' + ua in aliases[a] else '', a) for ua in uniqueAliases]
 	return items
 
 def save(out, items):

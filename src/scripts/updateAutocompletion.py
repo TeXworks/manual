@@ -34,7 +34,7 @@ def toList(rules):
 	return items
 
 def save(out, items):
-	items.sort(key = lambda x: x[2].lower())
+	items.sort(key = lambda x: (x[2].lower(), x[0].lower(), x[1].lower()))
 
 	with open(out, 'w', encoding = 'utf-8') as f:
 		print(formatLaTeXTable(items, r'>{\footnotesize}p{15mm}>{\footnotesize}p{15mm}>{\footnotesize}p{95mm}'), file = f)

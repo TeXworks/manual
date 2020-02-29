@@ -41,5 +41,5 @@ def save(out, items):
 
 loadTranslations(TWDIR)
 
-for out, src in (('Basic', 'basic'), ('Latex', 'latex')):
+for out, src in (('Basic', 'basic'), ('Beamer', 'beamer'), ('Context', 'context'), ('LatexPkg', 'latex-pkg'), ('Latex', 'latex')):
 	save('autocompletion{0}.tex'.format(out), toList(load(os.path.join(TWDIR + 'res', 'resfiles', 'completion', 'tw-{0}.txt'.format(src)))))

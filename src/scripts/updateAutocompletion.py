@@ -3,8 +3,9 @@
 TWDIR="../../../texworks/"
 
 from LaTeX import *
+import os.path
 
-def autocompletionToFile(src, out):
+def load(src):
 	with open(src, 'r', encoding = 'utf-8') as f:
 		rules = {}
 		for line in f:
@@ -15,7 +16,9 @@ def autocompletionToFile(src, out):
 			else:
 				key = value = line[0]
 			rules[key] = value
-	
+	return rules
+
+def toList(rules):
 	items = []
 	for key in list(rules.keys()):
 		if not key in rules: continue
@@ -35,7 +38,9 @@ def autocompletionToFile(src, out):
 				del rules["\\" + key]
 		del rules[key]
 		items.append((v1, v2, v3))
-	
+	return items
+
+def save(out, items):
 	items.sort(key = lambda x: x[2].lower())
 
 	with open(out, 'w', encoding = 'utf-8') as f:
@@ -43,6 +48,5 @@ def autocompletionToFile(src, out):
 
 loadTranslations(TWDIR)
 
-autocompletionToFile(TWDIR + "res/resfiles/completion/tw-basic.txt", "autocompletionBasic.tex")
-autocompletionToFile(TWDIR + "res/resfiles/completion/tw-latex.txt", "autocompletionLatex.tex")
-
+for out, src in (('Basic', 'basic'), ('Latex', 'latex')):
+	save('autocompletion{0}.tex'.format(out), toList(load(os.path.join(TWDIR + 'res', 'resfiles', 'completion', 'tw-{0}.txt'.format(src)))))

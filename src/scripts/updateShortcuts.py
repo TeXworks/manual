@@ -5,10 +5,11 @@ TWDIR="../../../texworks/"
 from xml.etree import ElementTree
 import LaTeX
 from LaTeX import *
+import os.path
 
 LaTeX.staticTranslations = {'Shortcut': {'fr': 'Raccourci'}}
 
-def shortcutsToFile(src, out):
+def load(src):
 	res = []
 
 	tree = ElementTree.parse(src)
@@ -22,7 +23,9 @@ def shortcutsToFile(src, out):
 				key = prop.find("string").text
 		if name and key:
 			res.append((tr(Shortcut(key)), tr(name)))
+	return res
 
+def save(out, res):
 	res.sort(key = lambda x: x[0])
 
 	with open(out, 'w', encoding = 'utf-8') as f:
@@ -30,6 +33,5 @@ def shortcutsToFile(src, out):
 
 loadTranslations(TWDIR)
 
-shortcutsToFile(TWDIR + "src/TeXDocumentWindow.ui", "shortcutsTeXDocument.tex")
-shortcutsToFile(TWDIR + "src/PDFDocumentWindow.ui", "shortcutsPDFDocument.tex")
-
+save('shortcutsTeXDocument.tex', load(os.path.join(TWDIR, 'src', 'TeXDocumentWindow.ui')))
+save('shortcutsPDFDocument.tex', load(os.path.join(TWDIR, 'src', 'PDFDocumentWindow.ui')))

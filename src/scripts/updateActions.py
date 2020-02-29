@@ -44,19 +44,19 @@ def getActions(src, out):
 						i += 1
 	
 	labels = list(labels.items())
-	labels.sort(key = lambda x: x[1])
-	if out is not None:
+	labels.sort(key = lambda x: locale.strxfrm(tr(x[1])))
 
+	if out is not None:
 		i = 0
 		items = []
 		for (key, label) in labels:
 			if not key in menus: continue
 			if i > 0: items.append(VerbatimLaTeX("%\n\\midrule\n%"))
-			items.append(VerbatimLaTeX(r"\multicolumn{{2}}{{c}}{{{label}}} \\".format(label = makeLaTeXsafe(label))))
+			items.append(VerbatimLaTeX(r"\multicolumn{{2}}{{c}}{{{label}}} \\".format(label = makeLaTeXsafe(tr(label)))))
 			items += columnize(sorted(menus[key]))
 			i += 1
 
-		with open(out, 'w') as f:
+		with open(out, 'w', encoding='utf-8') as f:
 			print(formatLaTeXTable(items, 'QQ'), file = f)
 
 #	for menu in tree.findall("/widget/widget/widget"):
@@ -67,6 +67,8 @@ def getActions(src, out):
 
 #		break
 
+loadTranslations(TWDIR)
+
 getActions(TWDIR + "src/TeXDocumentWindow.ui", "menuactionsTeXDocument.tex")
 getActions(TWDIR + "src/PDFDocumentWindow.ui", "menuactionsPDFDocument.tex")
 getActions(TWDIR + "src/CompletingEdit.ui", None)
@@ -76,5 +78,5 @@ getActions(TWDIR + "src/CompletingEdit.ui", None)
 acts = list(set(acts))
 acts.sort()
 
-with open("actionsAlphabetical.tex", 'w') as f:
+with open("actionsAlphabetical.tex", 'w', encoding = 'utf-8') as f:
 	print(formatLaTeXTable(columnize(acts), 'QQ'), file = f)

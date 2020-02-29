@@ -5,7 +5,7 @@ TWDIR="../../../texworks/"
 from LaTeX import *
 
 def autocompletionToFile(src, out):
-	with open(src, 'r') as f:
+	with open(src, 'r', encoding = 'utf-8') as f:
 		rules = {}
 		for line in f:
 			if line[0] == '%': continue
@@ -38,8 +38,10 @@ def autocompletionToFile(src, out):
 	
 	items.sort(key = lambda x: x[2].lower())
 
-	with open(out, 'w') as f:
+	with open(out, 'w', encoding = 'utf-8') as f:
 		print(formatLaTeXTable(items, r'>{\footnotesize}p{15mm}>{\footnotesize}p{15mm}>{\footnotesize}p{95mm}'), file = f)
+
+loadTranslations(TWDIR)
 
 autocompletionToFile(TWDIR + "res/resfiles/completion/tw-basic.txt", "autocompletionBasic.tex")
 autocompletionToFile(TWDIR + "res/resfiles/completion/tw-latex.txt", "autocompletionLatex.tex")

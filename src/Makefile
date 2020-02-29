@@ -1,4 +1,4 @@
-LANGS = $(patsubst %/,manual-%,$(wildcard */))
+LANGS = $(patsubst %/,manual-%,$(filter-out scripts/,$(wildcard */)))
 DISTLANGS = $(patsubst manual-%,dist-%,$(LANGS))
 CLEANLANGS = $(patsubst manual-%,clean-%,$(LANGS))
 DISTCLEANLANGS = $(patsubst manual-%,dist-clean-%,$(LANGS))

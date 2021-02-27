@@ -107,8 +107,11 @@ For the source window:
 For the preview window:
 \input menuactionsPDFDocument.tex
 
-\subsection{Other actions}
-In addition to the static actions listed above, there are also actions for scripts. These are dynamic in nature, as they are created on-the-fly for the available scripts (which may change when you install scripts, remove them, or change some settings). All of these actions are of the form \verb*|Script: <script_title>|, where \verb*|<script_title>| must be replaced appropriately. If you have a script that shows up as \verb|My Script|, for example, the corresponding action would be named \verb*|Script: My Script|.
+\subsection{Actions for typesetting tools}
+In addition to the static actions listed above, there are also actions for switching to a typesetting tool. All of these actions are of the general form \verb*|actionTypesetTool<tool_name>| where \verb*|<tool_name>| must be replaced appropriately. For example, the name corresponding to the \verb*|pdfLaTeX| typesetting tool is \verb*|actionTypesetToolpdfLaTeX|, that corresponding to \verb*|My tool| is \verb*|actionTypesetToolMy tool|.\footnote{Note that some characters (such as \verb*|=| and \verb*|;| are reserved in ini files and must be escaped by \verb*|%XX|, where \verb*|XX| is the corresponding hexadecimal ASCII code. For example, the name corresponding to \verb*|A=B| is \verb*|actionTypesetToolA%3DB|.}
+
+\subsection{Actions for scripts}
+There are also actions for scripts. These are dynamic in nature, as they are created on-the-fly for the available scripts (which may change when you install scripts, remove them, or change some settings). All of these actions are of the form \verb*|Script: <script_title>|, where \verb*|<script_title>| must be replaced appropriately. If you have a script that shows up as \verb|My Script|, for example, the corresponding action would be named \verb*|Script: My Script|.
 
 
 \section{Roots for completion}

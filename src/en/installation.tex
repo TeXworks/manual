@@ -8,7 +8,7 @@
 
 \Tw{} is only a text editor; to be able to create documents with \AllTeX{} and to typeset them to PDF, we also need what is called a \emph{{\TeX} distribution}\index{TeX distribution@{\TeX} distribution}\index{TeX@\TeX!distribution|see {{\TeX} distribution}}. This is a collection of programs and other files which will be automatically called by {\Tw} during its work. Thus, you need to install a distribution: we will do that \emph{before} starting {\Tw} for the first time, as this way, {\Tw} will automatically find what it needs.
 
-\textbf{TeX~Live}\index{TeX distribution@{\TeX} distribution!TeX~Live} (\url{http://www.tug.org/texlive/}), a combination of teTeX, MacTeX and XEmTeX, is available for all three operating systems (Linux, Mac OS X, Windows). Note that you need a reasonably recent version of TeX~Live (2012 or later at the time of writing) to use all features of {\Tw}.
+\textbf{TeX~Live}\index{TeX distribution@{\TeX} distribution!TeX~Live} (\url{http://www.tug.org/texlive/}), a combination of teTeX, MacTeX and XEmTeX, is available for all three operating systems (Linux, macOS, Windows). Note that you need a reasonably recent version of TeX~Live (2012 or later at the time of writing) to use all features of {\Tw}.
 
 \begin{OSLinux}
 For Linux\index{TeX distribution@{\TeX} distribution!Linux}: most Linux distributions include a {\TeX} distribution, but it may not be installed by default and you will have to use the Linux package management tools to do that. Alternatively, you can also download and install TeX~Live directly from \url{http://www.tug.org/texlive/}.
@@ -49,17 +49,17 @@ If your Linux distribution does not provide recent, adequate packages, you need 
 
 Once the program is installed, start {\Tw}. The folders \path{.TeXworks}\index{folder!.TeXworks} and \path{.config/TUG}\index{folder!.config/TUG} will be created in your home directory.
 
-\section{Under Mac OS X}\index{installation!Mac}
+\section{Under macOS}\index{installation!Mac}
 
 If you want to obtain an ``official'' version, obtain {\Tw} by downloading the archive from the {\Tw} web site \url{http://tug.org/texworks/} after the installation of the {\TeX} distribution.
 
 It comes as a standalone \texttt{.app} package that does not require any Qt files installed into \path{/Library/Frameworks}, or other libraries into \path{/usr/local/lib}. Just copy the \path{.app} anywhere you like and run it.
 
-On Mac OS X, the {\Tw} resource\index{folder!resource Mac} folder will be created in your \path{Library} folder (\path{~/Library/TeXworks/}), inside your home directory. Preferences are stored in \path{~/Library/Preferences/org.tug.TeXworks.plist}
+On macOS, the {\Tw} resource\index{folder!resource Mac} folder will be created in your \path{Library} folder (\path{~/Library/TeXworks/}), inside your home directory. Preferences are stored in \path{~/Library/Preferences/org.tug.TeXworks.plist}
 which you can delete if you ever suspect it is causing problems.
 
 \section{Ready!}
 
-Finally, some files may need to be added to the ``personal'' files that {\Tw} creates. As the exact location of these depends on your platform, this will be referred to as \path{<resources>}\index{folder!$\langle$resources$\rangle$} or the \textbf{{\Tw} resource folder} throughout this manual. On Linux, this is \path{~/.TeXworks}, on Windows~XP it is \path{C:\Documents and Settings\<your name>\TeXworks}, on Windows Vista/7 it is \path{C:\Users\<your name>\TeXworks}, and on Mac OS X it is \path{~/Library/TeXworks/} by default. The easiest way to locate this folder in recent versions of {\Tw} is to use the \menu{Help}\submenu\menu{Settings and Resources\dots} menu item. It opens a dialog which shows you where {\Tw} saves its settings and where it looks for resources.
+Finally, some files may need to be added to the ``personal'' files that {\Tw} creates. As the exact location of these depends on your platform, this will be referred to as \path{<resources>}\index{folder!$\langle$resources$\rangle$} or the \textbf{{\Tw} resource folder} throughout this manual. On Linux, this is \path{~/.TeXworks}, on Windows~XP it is \path{C:\Documents and Settings\<your name>\TeXworks}, on Windows Vista/7 it is \path{C:\Users\<your name>\TeXworks}, and on macOS it is \path{~/Library/TeXworks/} by default. The easiest way to locate this folder in recent versions of {\Tw} is to use the \menu{Help}\submenu\menu{Settings and Resources\dots} menu item. It opens a dialog which shows you where {\Tw} saves its settings and where it looks for resources.
 
 After installation and first run, have a look in the sub-folders of the {\Tw} resource folder and delete any \path{qt_temp.xxxx} files; they are temporary files left behind and could interfere with the normal ones, which are installed in the same folder, later on.

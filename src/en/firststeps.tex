@@ -21,7 +21,7 @@ When one opens the editor, it shows a very sparse interface: a title bar, a menu
 \vspace*{-1em}
 \usebox{\inlineimg}
 \end{wrapfigure}
-\noindent The first toolbar has a button to typeset and an drop-down menu to choose the format for typesetting (we'll choose \verb+pdfLaTeX+). Knowing that the keyboard shortcut for typesetting is \keysequence{Ctrl+T} (Mac OS X: \keysequence{Cmd+T}) and that we almost never change the format, we could even hide this toolbar. The selection of a format for compiling can also be changed through the \menu{Typeset}\index{typeset} menu.
+\noindent The first toolbar has a button to typeset and an drop-down menu to choose the format for typesetting (we'll choose \verb+pdfLaTeX+). Knowing that the keyboard shortcut for typesetting is \keysequence{Ctrl+T} (macOS: \keysequence{Cmd+T}) and that we almost never change the format, we could even hide this toolbar. The selection of a format for compiling can also be changed through the \menu{Typeset}\index{typeset} menu.
 \vspace{10pt}
 
 %\includegraphics[scale=.6]{toolbar2}\hspace{10pt}%
@@ -74,14 +74,14 @@ Save the file in a folder for test documents (e.g., \path{<home>\TeXworks_tests}
 \subsection{Typesetting the document and viewing it}
 
 Next we start typesetting\index{document!typesetting}\footnote{We also use the words ``compilation'' and ``to compile'' for the same action; indeed {\LaTeX} works on the source file to produce a \path{.pdf} output, so there is a compilation.} by clicking the green button \raisebox{-2pt}{\includegraphics{iconTypeset}}
-or by \keysequence{Ctrl+T}\index{Ctrl+T|texttt} (Mac OS X: \keysequence{Cmd+T}).
+or by \keysequence{Ctrl+T}\index{Ctrl+T|texttt} (macOS: \keysequence{Cmd+T}).
 
 A new panel opens between the typing area and the status bar: the \emph{output panel\index{output panel}}, labeled \emph{Log\index{log}}; everything {\LaTeX} is doing is displayed there\footnote{see page \pageref{fig:consoleOutput} for a picture of the panel}. When {\LaTeX} finishes this panel disappears (if there no error occurred) and a new window will appear; in this new window, the \emph{Preview window\index{preview window}}\index{document!previewing}, you can see a page with a title \foreignlanguage{french}{``Premier document''} followed by the name of the author \foreignlanguage{french}{``Un TeXnicien''}, both centred, the text
 \foreignlanguage{french}{``Voici un texte accentué en français!''}, and a page number at the bottom centre.
 
 Notice that the mouse cursor is like a magnifier in the new window. If you press (and hold) the left button of the mouse you can see the text under the magnifier much bigger (it is a magnifier, isn't it!); you can move the magnifier and so inspect the text in detail.
 
-To go back to the source, you can just click in its window or better use \keysequence{Ctrl+'}\index{Ctrl+'|texttt} (Mac OS X \keysequence{Cmd+'}). This shortcut toggles between the two windows. See also section \ref{sec.synctex} to automatically move to a specific location in the output from the source or vice versa.
+To go back to the source, you can just click in its window or better use \keysequence{Ctrl+'}\index{Ctrl+'|texttt} (macOS \keysequence{Cmd+'}). This shortcut toggles between the two windows. See also section \ref{sec.synctex} to automatically move to a specific location in the output from the source or vice versa.
 
 \subsection{The work of \LaTeX}
 
@@ -155,7 +155,7 @@ There are different possible actions:
 \item Type \verb+x+\Return to stop compilation. This is the traditional {\AllTeX} way to kill a typesetting process.
 
 We can also kill the typesetting by repeating the action used to start it: the green typesetting button will have changed to a red one with a white cross \raisebox{-2pt}{\includegraphics[scale=.8]{iconAbortTypesetting}}.
-By clicking on that button or by hitting \keysequence{Ctrl+T} (Mac OS X: \keysequence{Cmd+T}) again, the {\LaTeX} process is terminated. The output panel is still visible and so one can still see the error message.
+By clicking on that button or by hitting \keysequence{Ctrl+T} (macOS: \keysequence{Cmd+T}) again, the {\LaTeX} process is terminated. The output panel is still visible and so one can still see the error message.
 \end{itemize}
 
 You should note that sometimes an error appears far from its actual position. For example, when opening an environment but not closing it, {\LaTeX} doesn't see the error before it encounters another end of environment without closing of the first one. The error is often only picked up at the \verb|\end{document}| command, which shows that another environment was not closed!

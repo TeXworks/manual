@@ -7,7 +7,7 @@
 \section{SyncTeX'ing between source and preview}\index{SyncTeX}
 \label{sec.synctex}
 
-When you are reading a document in the preview window and see something to change, it is convenient to go immediately to the corresponding place in the source. To do so, hold down \keysequence{Ctrl} (Mac OS X: \keysequence{Cmd}) and click at the appropriate place in the preview; the cursor will move and highlight the corresponding location in the source window. The same is true in the other direction: \keysequence{Ctrl+LMB} in the source will highlight the same line in the preview window.\footnote{It is also possible to use a right-click (\keysequence{RMB}) to open a context window and select ``jump to PDF'' or ``jump to source''.}
+When you are reading a document in the preview window and see something to change, it is convenient to go immediately to the corresponding place in the source. To do so, hold down \keysequence{Ctrl} (macOS: \keysequence{Cmd}) and click at the appropriate place in the preview; the cursor will move and highlight the corresponding location in the source window. The same is true in the other direction: \keysequence{Ctrl+LMB} in the source will highlight the same line in the preview window.\footnote{It is also possible to use a right-click (\keysequence{RMB}) to open a context window and select ``jump to PDF'' or ``jump to source''.}
 
 % \path doesn't support accented characters
 % as a workaround, use \texttt
@@ -73,7 +73,7 @@ This increases legibility, but works well only on short lines, without text wrap
 
 The command \menu{Format}\submenu\menu{Indent} or the shortcut \keysequence{Ctrl+]} (Mac OS~X: \keysequence{Cmd+]}) will indent the line, or the selected lines, by inserting a tab character. You can repeat the process to increase the indent. 
 
-To remove one level of indentation, use \menu{Format}\submenu\menu{Unindent} or the shortcut \keysequence{Ctrl+[} (\keysequence{Cmd+[} on Mac OS X).\footnote{See the modified shortcuts if your keyboard layout does not allow these actions.}
+To remove one level of indentation, use \menu{Format}\submenu\menu{Unindent} or the shortcut \keysequence{Ctrl+[} (\keysequence{Cmd+[} on macOS).\footnote{See the modified shortcuts if your keyboard layout does not allow these actions.}
 
 As \textsl{indent} only indents the first part of very long (wrapped) lines, this is not very satisfactory in some cases. But one can ask {\Tw} to split a long line (longer than the width of the editing window) into short ones adding a hard coded line feed. \menu{Format}\submenu\menu{Hard Wrap...}\index{wrap lines!hard} opens a dialog box in which you can specify the width of the lines; you can also re-format lines which have already been split.
 %
@@ -127,7 +127,7 @@ libpath=C:/myfolder/TW_conf/
 
 \verb+inipath+\index{configuration!inipath} for the configuration file and \verb+libpath+\index{configuration!libpath} for the necessary folders. Here, \path{TW_conf} would replace the resource folder \path{TeXworks}. Note that the referenced folder (here \path{TW_conf}) should exist---it will not be created---, and that the \verb|/| is used even on Windows (instead of the common \verb+\+).
 
-If one wants to put the resource folder in the programme folder as a subfolder, one can use an instruction like \verb+inipath=./TW_conf/+; all relative paths are taken to be relative to the {\Tw} programme folder (on Mac OS X, the folder containing the app package is used).
+If one wants to put the resource folder in the programme folder as a subfolder, one can use an instruction like \verb+inipath=./TW_conf/+; all relative paths are taken to be relative to the {\Tw} programme folder (on macOS, the folder containing the app package is used).
 
 One can also add a line\index{configuration!defaultbinpaths} like
 \begin{verbExample}

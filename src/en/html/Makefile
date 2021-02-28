@@ -57,7 +57,7 @@ images/%.eps : ../images/%.png
 	@echo "Creating image $@ (from $<)"
 	@mkdir -p images
 	# Some versions of convert refuse to produce .eps files due to security concerns
-	@convert "$<" "$@" $(SUPRESSOUT) 2$(SUPRESSOUT) || convert "$<" ppm: | pnmtops -noturn | eps2eps - "$@"
+	@convert "$<" "$@" $(SUPRESSOUT) 2$(SUPRESSOUT) || convert "$<" ppm:- | pnmtops -noturn | eps2eps - "$@"
 
 
 index.ind : images $(SOURCES) manual.cfg tex4ht.env

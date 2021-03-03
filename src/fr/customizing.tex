@@ -108,8 +108,11 @@ Pour la fenêtre source:
 Pour la fenêtre de vue:
 \input menuactionsPDFDocument.tex
 
-\subsection{Autres actions}
-En plus des actions listées ci-dessus, il y a aussi des actions pour les scripts. Celles-ci sont dynamiques par nature, comme elles sont créées à la volée pour les scripts disponibles (elles pourront changer lorsque vous installerez, supprimerez ou modifierez des scripts.) Toutes ces actions sont de la forme \verb*|Script: <script_titre>|, où \verb*|<script_titre>| doit être modifié de façon appropriée. Si vous avez un script qui apparaît comme \verb|Mon Script|, l'action correspondante sera appelée \verb*|Script: Mon Script|.
+\subsection{Actions pour les outils de composition}
+En plus des actions statiques listées ci-dessus, il y a aussi des actions pour activer un outil de composition. Toutes ces actions sont de la forme générale \verb*|actionTypesetTool<nom_outil| où \verb*|<nom_outil>| doit être remplacé de façon appropriée. Par exemple, le nom correspondant à l'outil de composition \verb*|pdfLaTeX| est \verb*|actionTypesetToolpdfLaTeX|, celui correspondant à \verb*|Mon outil| est \verb*|actionTypesetToolMon outil|.\footnote{Noter que certains caractères (comme \verb*|=| et \verb*|;| sont réservés dans les fichiers ini et doivent avoir un échappement par \verb*|%XX|, où \verb*|XX| est le code hexadécimal ASCII correspondant. Par exemple, le nom correspondant à \verb*|A=B| est \verb*|actionTypesetToolA%3DB|.}
+
+\subsection{Actions pour les scripts}
+Il y a aussi des actions pour les scripts. Elles sont dynamiques par nature, comme elles sont créées à la volée pour les scripts disponibles (qui peuvent changer quand vous installez des scripts, les retirez ou changez les paramètres.) Toutes ces actions sont de la forme \verb*|Script: <titre_script>|, où \verb*|<titre_script>| doit être remplacé de façon appropriée. Si vous avez un script qui se nomme \verb|Mon Script|, par exemple, l'action correspondante sera appelée \verb*|Script: Mon Script|.
 
 
 \section{Les mots clé de complétion}

@@ -1,0 +1,42 @@
+name: CI
+on:
+  - push
+  - pull_request
+
+jobs:
+  texlive:
+    name: TeXLive (Ubuntu)
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Install dependencies
+      run: sudo apt install --assume-yes --no-install-recommends ghostscript imagemagick lmodern netpbm tex4ht texlive-fonts-recommended texlive-lang-french texlive-latex-base texlive-latex-extra texlive-luatex tidy
+
+    - name: Typeset
+      run: make dist
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        path: |
+          pdf/**/*.pdf
+          html/*.zip
+
+    - name: Package (Launchpad)
+      id: package-launchpad
+      uses: ./.github/actions/package-launchpad
+      with:
+        DEB_PASSPHRASE: ${{ secrets.DEB_PASSPHRASE }}
+        DECRYPTION_KEY: ${{ secrets.DECRYPTION_KEY }}
+
+    - name: Deploy (Launchpad)
+      if: github.event_name == 'push'
+      uses: ./.github/actions/deploy-launchpad
+      with:
+        changes_files: ${{ steps.package-launchpad.outputs.changes_files }}
+        devel-repo: "ppa:texworks/ppa"
+        stable-repo: "ppa:texworks/stable"

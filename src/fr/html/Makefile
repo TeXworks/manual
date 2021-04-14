@@ -80,7 +80,7 @@ clean :
 	rm -f index.4ct index.4tc index.dvi index.idv index.idx index.lg index.log index.out index.tmp index.xref index.4dx index.4ix index.ilg index.ind
 
 dist-clean : clean
-	rm -f *.html index.css
+	rm -f *.html index.css index*png
 	rm -rf images/
 
 dist : dist-html

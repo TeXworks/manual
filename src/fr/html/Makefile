@@ -7,7 +7,7 @@ EpsFromJpg = images/rechremp.eps
 
 IMAGES = $(Logos) $(EpsFromPdf) $(EpsFromPng) ${EpsFromJpg}
 
-HTOPTS = "manual,info,2,imgdir:images/,sec-filename,next,index=2,url-enc" "" "-S*"
+HTOPTS = "manual,info,2,sec-filename,next,index=2,url-enc" "" "-S*"
 
 # Ghostscript 9.14/9.15 dropped the 'epswrite' output device in favor of the new
 # 'eps2write' output device. Prefer the latter, but fallback to the former for

@@ -27,6 +27,7 @@ jobs:
           html/*.zip
 
     - name: Package (Launchpad)
+      if: github.event_name == 'push'
       id: package-launchpad
       uses: ./.github/actions/package-launchpad
       with:

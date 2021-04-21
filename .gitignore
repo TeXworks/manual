@@ -23,5 +23,6 @@ src/*/html/*.tex
 src/*/html/index.css
 src/*/html/*.sty
 src/*/html/images
+src/*/html/index*.png
 /html/
 /pdf/

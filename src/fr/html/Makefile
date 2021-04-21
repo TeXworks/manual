@@ -7,7 +7,7 @@ EpsFromJpg = images/rechremp.eps
 
 IMAGES = $(Logos) $(EpsFromPdf) $(EpsFromPng) ${EpsFromJpg}
 
-HTOPTS = "manual,info,2,sec-filename,next,index=2,url-enc" "" "-S*"
+HTOPTS = "manual,info,2,sec-filename,next,index=2,url-enc,charset=utf-8" " -cmozhtf -utf8" "-S*"
 
 # Ghostscript 9.14/9.15 dropped the 'epswrite' output device in favor of the new
 # 'eps2write' output device. Prefer the latter, but fallback to the former for
@@ -24,7 +24,7 @@ SOURCES = index.tex $(filter-out manuel.tex,$(subst ../,,$(wildcard ../*.tex ../
 
 html : index.html
 
-index.html : $(IMAGES) $(SOURCES) index.ind manual.cfg tex4ht.env
+index.html : $(IMAGES) $(SOURCES) index.ind manual.cfg
 	@htlatex index $(HTOPTS)
 	@htlatex index $(HTOPTS)
 
@@ -66,7 +66,7 @@ images/%.eps : ../images/%.jpg
 	@convert "$<" "$@" $(SUPRESSOUT) 2$(SUPRESSOUT) || convert "$<" ppm:- | pnmtops -noturn | eps2eps - "$@"
 
 
-index.ind : images $(SOURCES) manual.cfg tex4ht.env
+index.ind : images $(SOURCES) manual.cfg
 	@echo "Creating index..."
 	@echo "   running htlatex..."
 	@htlatex index $(HTOPTS)
@@ -80,7 +80,7 @@ clean :
 	rm -f index.4ct index.4tc index.dvi index.idv index.idx index.lg index.log index.out index.tmp index.xref index.4dx index.4ix index.ilg index.ind
 
 dist-clean : clean
-	rm -f *.html index.css
+	rm -f *.html index.css index*png
 	rm -rf images/
 
 dist : dist-html

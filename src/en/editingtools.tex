@@ -1,6 +1,7 @@
 % !TEX encoding   = UTF8
 % !TEX root       = manual.tex
 % !TEX spellcheck = en_US
+% !TEX bibfiles   = manual.bib
 
 \chapter{Going further: Editing tools}
 
@@ -174,3 +175,46 @@ In the first case, \verb|bfigo| is the assigned keyword (with \verb|:=|) to be c
 In the second case, we give ourselves a shortcut, which will let us type the first part of \verb|\bibliography{}| and have {\Tw} convert it to the full name plus braces (with the cursor between them). In this case, the keyword is the instruction itself.
 
 Note that the \path{.txt} file containing the auto-completion information needs to be UTF-8 encoded---this is the default encoding for all files created with {\Tw}.
+
+\section{Citations \& References}\index{citations}\index{references}
+\label{sec.citationsDialog}
+Referencing other works is common practice, particularly in scientific writing. A common way for doing this in {\AllTeX} is to use a bibliography database (in {\BibTeX} format) together with a program such as {\BibTeX} or biber for extracting the necessary bibliographic data for typesetting. For inserting citations, typically a command such as \verb|\cite{dkn1}| is used, where \verb|dkn1| is the unique {\BibTeX}-key associated with the work to cite.
+
+As is apparent from the example above, {\BibTeX}-keys are not always self-explanatory or easy to remember, particularly when working with large bibliography databases with hundreds of entries. For that reason, {\Tw} has a built-in dialog to facilitate working with citations. Before it can be used, however, you have to make sure a special comment (see sec.~\ref{sec.special_comments}) such as the following is present at the top of your file:
+\begin{verbExample}
+% !TeX bibfiles = file1.bib,file2.bib
+\end{verbExample}
+Here, \verb|file1.bib| and \verb|file2.bib| are examples of bibliography database files (of course you can also specify one, or three, or more files). Note that the special comment has to be present in the file you are working on (having it in another file, such as the root file, currently doesn't work).
+
+When the special comment is present, use \menu{Edit}\submenu\menu{Insert Citations\dots} to open the citations dialog box:
+\begin{center}
+\includegraphics[width=30em]{citationsDialog}
+\end{center}
+
+This screenshots shows an example using the bibliography database used for typesetting this manual. It shows a list of authors, titles, publication years (and journals in case of articles) for all database entries. The list can be filtered conveniently by using the ``Filter\dots'' textbox at the top. Then, you simply select the items you want to cite, and hit ``OK''. This will insert a new \verb|\cite| command with a comma-separated list of the {\BibTeX}-keys of all the items you selected.
+
+If you position the cursor inside an existing \verb|\cite| command, the dialog will automatically check the cited items. You can uncheck items or check additional entries, hit ``OK'', and {\Tw} will automatically update the list of {\BibTeX}-keys in the existing \verb|\cite| command accordingly.
+
+\subsection{Customizing the ``Insert Citations\dots'' dialog}
+There are two aspects of the ``Insert Citations\dots'' dialog that can be customized, if necessary. However, this customization is intended solely for expert users, as it is not included in the normal preferences dialog but instead involves manually editing configuration files. To figure out where settings are stored, use \menu{Help}\submenu\menu{Settings and Resources\dots}.
+
+\begin{OSWindows}
+On Windows, the settings are stored in the registry by default. It is \emph{not recommended} to modify the registry, as mistakes may damage the system. In such situations, it is recommended to use {\Tw}'s portable mode instead (see sec.~\ref{sec.portable_configuration}).
+\end{OSWindows}
+
+To customize which {\BibTeX} fields are shown in the dialog, set the \verb|citationDialogBibTeXFields| configuration value to a semi-colon separated list of (case-insensitive) {\BibTeX} field names, e.g.
+\begin{verbExample}
+citationDialogBibTeXFields="Type;Author;Title;Year;Journal"
+\end{verbExample}
+The following field names are handled specially:
+\begin{description}
+\item[Key] displays the {\BibTeX} keys
+\item[Type] displays the entry type (e.g., article, book, phdthesis, \dots)
+\item[Journal] displays the first non-empty field out of ``howpublished'', ``journal'', and ``booktitle''
+\end{description}
+
+To customize which citation command is inserted by default, set the \verb|citeCommand| configuration value in the following way:
+\begin{verbExample}
+citeCommand="\cite{%1}"
+\end{verbExample}
+where \%1 will be replaced by a comma-separated list of {\BibTeX}-keys. Note that this command is not used when updating an existing citation command (which will be preserved).

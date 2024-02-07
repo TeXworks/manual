@@ -16,6 +16,7 @@ Here a remark for users under Windows: this only works if \textbf{all} the names
 \end{OSWindows}
 
 \section{Special comment strings}
+\label{sec.special_comments}
 
 Special comments, at the very beginning of the files, can be used to manage two other aspects of the compilation.
 
@@ -52,6 +53,11 @@ In addition, you can set the spell checking language by a similar comment line:
 % !TeX spellcheck = <language_code>
 \end{verbExample}
 The language codes available on your system are listed in parentheses in \menu{Edit}\submenu\menu{Spelling} next to the human-readable name of the language.
+
+To tell {\Tw} about bibliography databases to use for the ``Insert Citations\dots'' dialog, you can use (see sec.~\ref{sec.citationsDialog})
+\begin{verbExample}
+% !TeX bibfiles = file1.bib,file2.bib
+\end{verbExample}
 
 \needspace{6\baselineskip}
 \section{Formatting the source for legibility}

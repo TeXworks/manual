@@ -17,6 +17,7 @@ html :
 
 manual.pdf : manual.ind *.tex *.sty images/*.pdf images/*.png
 	@lualatex manual
+	@bibtex manual
 	@lualatex manual
 	@lualatex $(SYNCTEX) manual
 	
@@ -25,7 +26,7 @@ manual.ind : *.tex *.sty
 	@makeindex manual
 
 clean :
-	rm -f *.aux *.log *.out *.idx *.ind *.ilg *.toc
+	rm -f *.aux *.bbl *.log *.out *.idx *.ind *.ilg *.toc
 
 dist-clean : clean
 	rm -f manual.pdf *.synctex *.synctex.gz

@@ -19,17 +19,22 @@ CP = $(if $(WINDOWS),copy,cp)
 
 .PHONY : html clean dist-clean dist dist-pdf dist-html
 
-SOURCES = index.tex $(filter-out manual.tex,$(subst ../,,$(wildcard ../*.tex ../*.sty)))
+SOURCES = index.tex $(filter-out manual.tex,$(subst ../,,$(wildcard ../*.tex ../*.sty ../*.bib ../*.bst)))
 
 html : index.html
 
 index.html : $(IMAGES) $(SOURCES) index.ind manual.cfg
 	@htlatex index $(HTOPTS)
+	@bibtex index
 	@htlatex index $(HTOPTS)
 
 %.tex : ../%.tex
 	$(CP) $< $@
 %.sty : ../%.sty
+	$(CP) $< $@
+%.bib : ../%.bib
+	$(CP) $< $@
+%.bst : ../%.bst
 	$(CP) $< $@
 index.tex : ../manual.tex
 	$(CP) $< $@
@@ -70,7 +75,7 @@ index.ind : images $(SOURCES) manual.cfg
 	@makeindex -o index.ind index.4dx
 
 clean : 
-	rm -f *.tex *.sty idxmake.* *.aux *.log
+	rm -f *.tex *.sty *.bib *.bst idxmake.* *.aux *.bbl *.log
 	rm -f index.4ct index.4tc index.dvi index.idv index.idx index.lg index.log index.out index.tmp index.xref index.4dx index.4ix index.ilg index.ind
 
 dist-clean : clean

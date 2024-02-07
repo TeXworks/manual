@@ -64,6 +64,7 @@
 \RequirePackage{amssymb}
 
 \RequirePackage{upquote}
+\RequirePackage{metalogo}
 
 %\newcommand{\Cmd}{\keystroke{Cmd}}
 \newcommand{\Cmd}{\keystroke{\includegraphics{MacCmdKey}}}
@@ -91,48 +92,24 @@
 \makeatletter
 \def\ConTeXt{Con{\kern-.1em\TeX\kern-.075em}t}
 
-\def\XeTeX{\leavevmode
-  \setbox0=\hbox{X\lower.5ex
-  \hbox{\kern-.15em
-    \ifdim\fontdimen1\font=0pt
-      \reflectbox{E}%
-    \else % rotation is about the origin, so we need to adjust positioning
-      \XeTeXuseglyphmetrics=1
-      \setbox0=\hbox{E}\dimen0=\ht0 \advance\dimen0 by \dp0
-      \raise\dimen0\hbox{\rotatebox{180}{\box0}}%
+\DeclareRobustCommand\AllTeX{%
+  \@xl@everylogo
+  (L\kern\xl@kern@La@La
+   {\ifxetex
+      \XeTeXuseglyphmetrics\@ne
     \fi
-  }\kern-.1667em \TeX}%
-  \dp0=0pt \ht0=0pt \box0 }
-
-\def\XeLaTeX{\leavevmode
-  \setbox0=\hbox{X\lower.5ex
-  \hbox{\kern-.15em
-    \ifdim\fontdimen1\font=0pt
-      \reflectbox{E}%
-    \else % rotation is about the origin, so we need to adjust positioning
-      \XeTeXuseglyphmetrics=1
-      \setbox0=\hbox{E}\dimen0=\ht0 \advance\dimen0 by \dp0
-      \raise\dimen0\hbox{\rotatebox{180}{\box0}}%
-    \fi
-  }\kern-.1067em \LaTeX}%
-  \dp0=0pt \ht0=0pt \box0 }
-
-
-\newcommand*{\AllTeX}{%
-  (L%
-  \kern-.36em{%
-    \setbox0\hbox{T}%
-    \vbox to\ht0{%
+    \sbox\z@ T%
+    \sbox\@ne{\xl@LaTeX@a}%
+    \vbox to\ht\z@{%
       \hbox{%
-        $\m@th$\csname S@\f@size\endcsname
-        \fontsize\sf@size\z@\math@fontsfalse\selectfont
-        A%
-      }%
-    \vss
-    }%
-  }%
-  \kern-.075em)\kern-.075em\TeX}
-\makeatother
+        \ltx@sh@ft{\ht\z@}%
+        \xl@sh@ft{\ht\@ne}%
+        \xl@LaTeX@a
+        \xl@sh@ft{\ht\z@}%
+        \ltx@sh@ft{\ht\@ne}}%
+      \vss}}%
+  \kern\dimexpr\xl@kern@LaTeX@aT/2\relax)%
+  \kern\dimexpr\xl@kern@LaTeX@aT/2\relax\TeX}
 
 
 \newcommand{\Tw}{\texorpdfstring{{\TeX}\kern-.1em works}{TeXworks}}

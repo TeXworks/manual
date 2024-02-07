@@ -23,15 +23,15 @@ Make sure you have the following required LaTeX packages installed:
 	amsmath, amssymb, array, babel, babel-french, booktabs, calc, color, ec,
 	etoolbox, fancyhdr, fancyvrb, fncychap, fontenc, footmisc, framed, graphicx,
 	hyperref, idxlayout, inputenc, keystroke, lmodern, longtable, makeidx,
-	microtype, needspace, sectsty, tocbibind, upquote, url, wrapfig,
+	metalogo, microtype, needspace, sectsty, tocbibind, upquote, url, wrapfig,
 and the ZapfChancery font.
 
 When using TeXLive, these can be installed by running
 ```
 	tlmgr install amsfonts amsmath babel babel-french booktabs ec etoolbox \
 	              fancyhdr fancyvrb fncychap footmisc framed graphics hyperref \
-	              idxlayout keystroke latex lm microtype needspace sectsty \
-	              tocbibind tools upquote url wrapfig zapfchan
+	              idxlayout keystroke latex lm metalogo microtype needspace \
+	              sectsty tocbibind tools upquote url wrapfig zapfchan
 ```
 from the command line.
 

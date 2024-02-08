@@ -19,7 +19,7 @@ To define a complementary set\footnote{A set of characters that are not allowed 
 
 When using regexps, one very often has to create a search expession which represents other strings in a generic way. If you are looking for a string that matches email addresses, for example, the letters and symbols will vary; still, you could search for any string which corresponds to the structure of an email address (\texttt{<text>@<text>.<text>}, roughly). To facilitate this, there are abbreviations to represent letters, figures, symbols, \dots 
 
-These codes replace and facilitate the definition of sets; for example, to instead of manually defining the set of digits \textbf{[0-9]}, one can use ``\textbf{\textbackslash{}d}''. The following table lists the replacement codes.\footnote{simplified from Qt4 at trolltech, see note \label{trollnext}\ref{fn.regexpQt}}
+These codes replace and facilitate the definition of sets; for example, to instead of manually defining the set of digits \textbf{[0-9]}, one can use ``\textbf{\textbackslash{}d}''. The following table lists the replacement codes.\footnote{simplified from Qt, see note \ref{fn.regexpQt}}
 \smallskip
 
 \noindent\begin{tabular}{Rp{113mm}}
@@ -59,7 +59,7 @@ To show the number of  repetitions, one uses a so called ``quantifier'': \textbf
 
 This can be combined with the set notation: \textbf{[0-9]\{1,2\}} will correspond to at least one digit and at most two, the integer numbers between 0 and 99. But this will match any group of 1 or 2 digits within any arbitrary string (which may have a lot of text before and after the integer); if we want this to match only if the whole string consists \emph{entirely} of 1 or 2 digits (without any other characters preceding or following them), we can rewrite the regular expression to read \textbf{\^{}[0-9]\{1,2\}\$}; here, the \textbf{\^{}} specifies that any match must start at the first character of the string, while the \textbf{\$} says that any matching substring must end at the last character of the string, so the string can only be comprised of one or two digits (\textbf{\^{}} and \textbf{\$} are so-called ``assertions''---more on them later).
 
-Here is a table of quantifiers.\footnote{simplified from Qt4 at trolltech, see note \ref{fn.regexpQt}} E represents an arbitrary expression (letter, abbreviation, set).
+Here is a table of quantifiers.\footnote{simplified from Qt, see note \ref{fn.regexpQt}} E represents an arbitrary expression (letter, abbreviation, set).
 \smallskip
 
 \noindent\begin{tabular}{Rp{113mm}}
@@ -82,7 +82,7 @@ When searching, it is often necessary to search for alternatives, e.g., apple, p
 
 To specify that a string should be considered standalone, we specify that it is surrounded by word separators/boundaries (begin/end of sentence, space), like \textbf{\textbackslash{}bapple\textbackslash{}b}. For our alternatives example we will \textbf{group} them by parentheses and add the boundaries \textbf{\textbackslash{}b(apple|pear|cherry)\textbackslash{}b}. Apart from \textbf{\textbackslash{}b} we have already seen \textbf{\^{}} and \textbf{\$} which mark the boundaries of the whole string.
 
-Here a table of the ``assertions'' which do not correspond to actual characters and will never be part of the result of a search. \footnote{simplified from Qt4 at trolltech, see note \ref{fn.regexpQt}}
+Here a table of the ``assertions'' which do not correspond to actual characters and will never be part of the result of a search. \footnote{simplified from Qt, see note \ref{fn.regexpQt}}
 \smallskip
 
 \noindent\begin{tabular}{Rp{113mm}}

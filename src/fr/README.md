@@ -45,7 +45,7 @@ If you intend to typeset in the HTML format, you also need tex4ht.
 Disclaimer
 ================================================================================
 
-Copyright (C) 2010-2021  Alain Delmotte, Stefan Löffler, and contributors.
+Copyright (C) 2010-2024  Alain Delmotte, Stefan Löffler, and contributors.
 Some rights reserved.
 
 Unless noted otherwise, the icons in the images/ folder are taken from the

@@ -1,8 +1,8 @@
 MANUAL_LANG=$(notdir $(abspath ..))
 
 Logos = images/Linux.png images/Mac.png images/Windows.png images/TeXworks.png images/example.png
-EpsFromPdf = images/MacCmdKey.eps images/MacOptKey.eps images/interface-summary.eps images/consoleOutput.eps images/errorParsingScript.eps images/LMB.eps images/RMB.eps
-EpsFromPng = images/citationsDialog.eps images/toolbar1.eps images/toolbar2.eps images/iconTypeset.eps images/iconAbortTypesetting.eps images/replaceDialog.eps images/screenshotHardWrapDlg.eps images/TeXworks.eps images/Linux.eps images/Mac.eps images/Windows.eps
+EpsFromPdf = images/MacCmdKey.eps images/MacOptKey.eps images/interface-summary.eps images/consoleOutput.eps images/errorParsingScript.eps images/iconTypeset.eps images/iconAbortTypesetting.eps images/LMB.eps images/RMB.eps
+EpsFromPng = images/citationsDialog.eps images/toolbar1.eps images/toolbar2.eps images/replaceDialog.eps images/screenshotHardWrapDlg.eps images/TeXworks.eps images/Linux.eps images/Mac.eps images/Windows.eps
 
 IMAGES = $(Logos) $(EpsFromPdf) $(EpsFromPng)
 

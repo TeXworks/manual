@@ -58,11 +58,13 @@ images/%.eps : ../images/%.pdf
 	@echo "Creating image $@ (from $<)"
 	@mkdir -p images
 	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=$(GS_DEVICE) -sOutputFile="$@" "$<" $(SUPRESSOUT)
+	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=bbox "$@" $(SUPRESSOUT) 2> "images/$*.xbb"
 images/%.eps : ../images/%.png
 	@echo "Creating image $@ (from $<)"
 	@mkdir -p images
 	# Some versions of convert refuse to produce .eps files due to security concerns
 	@convert "$<" "$@" $(SUPRESSOUT) 2$(SUPRESSOUT) || convert "$<" ppm:- | pnmtops -noturn | eps2eps - "$@"
+	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=bbox "$@" $(SUPRESSOUT) 2> "images/$*.xbb"
 
 
 index.ind : images $(SOURCES) manual.cfg

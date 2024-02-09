@@ -21,6 +21,7 @@
 *.xref
 *.synctex.gz
 *.pdf
+*.xbb
 src/*/html/*.bib
 src/*/html/*.bst
 src/*/html/*.tex

@@ -4,7 +4,7 @@ Logos = images/Linux.png images/Mac.png images/Windows.png images/TeXworks.png i
 Pdfs = images/iconTypeset.pdf images/iconAbortTypesetting.pdf images/MacCmdKey.pdf images/MacOptKey.pdf images/LMB.pdf images/RMB.pdf
 Pngs = images/rechremp.png images/toolbar1.png images/toolbar2.png images/TeXworks.png images/Linux.png images/Mac.png images/Windows.png images/interface-Tw.png images/consoleOutput.png images/errorParsingScript.png
 
-IMAGES = $(Logos) $(EpsFromPdf) $(EpsFromPng)
+IMAGES = $(Logos) $(EpsFromPdf) $(EpsFromPng) $(Pngs) $(Pdfs)
 
 HTOPTS = "manual,info,2,sec-filename,next,index=2,url-enc,charset=utf-8" " -cmozhtf -utf8" "-S*"
 

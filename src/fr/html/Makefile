@@ -1,8 +1,8 @@
 MANUAL_LANG=$(notdir $(abspath ..))
 
 Logos = images/Linux.png images/Mac.png images/Windows.png images/TeXworks.png images/example.png
-EpsFromPdf = images/iconTypeset.eps images/iconAbortTypesetting.eps images/MacCmdKey.eps images/MacOptKey.eps images/LMB.eps images/RMB.eps
-EpsFromPng = images/rechremp.eps images/toolbar1.eps images/toolbar2.eps images/TeXworks.eps images/Linux.eps images/Mac.eps images/Windows.eps images/interface-Tw.eps images/consoleOutput.eps images/errorParsingScript.eps
+Pdfs = images/iconTypeset.pdf images/iconAbortTypesetting.pdf images/MacCmdKey.pdf images/MacOptKey.pdf images/LMB.pdf images/RMB.pdf
+Pngs = images/rechremp.png images/toolbar1.png images/toolbar2.png images/TeXworks.png images/Linux.png images/Mac.png images/Windows.png images/interface-Tw.png images/consoleOutput.png images/errorParsingScript.png
 
 IMAGES = $(Logos) $(EpsFromPdf) $(EpsFromPng)
 
@@ -49,16 +49,11 @@ images/TeXworks.png : ../images/TeXworks.png
 images/example.png : ../images/example.pdf
 	@mkdir -p images
 	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pngalpha -r300 -sstdout=%stderr -sOutputFile=- "$<" 2$(SUPRESSOUT) | convert png:- -resize 48x48 $@ $(SUPRESSOUT)
-images/%.eps : ../images/%.pdf
-	@echo "Creating image $@ (from $<)"
-	@mkdir -p images
-	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=$(GS_DEVICE) -sOutputFile="$@" "$<" $(SUPRESSOUT)
-	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=bbox "$@" $(SUPRESSOUT) 2> "images/$*.xbb"
-images/%.eps : ../images/%.png
-	@echo "Creating image $@ (from $<)"
-	@mkdir -p images
-	# Some versions of convert refuse to produce .eps files due to security concerns
-	@convert "$<" "$@" $(SUPRESSOUT) 2$(SUPRESSOUT) || convert "$<" ppm:- | pnmtops -noturn | eps2eps - "$@"
+images/%.png : ../images/%.png
+	@cp $< $@
+	@ebb -x $@
+images/%.pdf : ../images/%.pdf
+	@cp $< $@
 	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=bbox "$@" $(SUPRESSOUT) 2> "images/$*.xbb"
 
 

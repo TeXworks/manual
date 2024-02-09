@@ -1,10 +1,10 @@
 MANUAL_LANG=$(notdir $(abspath ..))
 
 Logos = images/Linux.png images/Mac.png images/Windows.png images/TeXworks.png images/example.png
-EpsFromPdf = images/MacCmdKey.eps images/MacOptKey.eps images/interface-summary.eps images/consoleOutput.eps images/errorParsingScript.eps images/iconTypeset.eps images/iconAbortTypesetting.eps images/LMB.eps images/RMB.eps
-EpsFromPng = images/citationsDialog.eps images/toolbar1.eps images/toolbar2.eps images/replaceDialog.eps images/screenshotHardWrapDlg.eps images/TeXworks.eps images/Linux.eps images/Mac.eps images/Windows.eps
+Pdfs = images/MacCmdKey.pdf images/MacOptKey.pdf images/interface-summary.pdf images/consoleOutput.pdf images/errorParsingScript.pdf images/iconTypeset.pdf images/iconAbortTypesetting.pdf images/LMB.pdf images/RMB.pdf
+Pngs = images/citationsDialog.png images/toolbar1.png images/toolbar2.png images/replaceDialog.png images/screenshotHardWrapDlg.png images/TeXworks.png images/Linux.png images/Mac.png images/Windows.png
 
-IMAGES = $(Logos) $(EpsFromPdf) $(EpsFromPng)
+IMAGES = $(Logos) $(EpsFromPdf) $(EpsFromPng) $(Pngs) $(Pdfs)
 
 HTOPTS = "manual,info,2,sec-filename,next,index=2,url-enc,charset=utf-8" " -cmozhtf -utf8" "-S*"
 
@@ -54,16 +54,11 @@ images/TeXworks.png : ../images/TeXworks.png
 images/example.png : ../images/example.pdf
 	@mkdir -p images
 	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pngalpha -r300 -sstdout=%stderr -sOutputFile=- "$<" 2$(SUPRESSOUT) | convert png:- -resize 48x48 $@ $(SUPRESSOUT)
-images/%.eps : ../images/%.pdf
-	@echo "Creating image $@ (from $<)"
-	@mkdir -p images
-	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=$(GS_DEVICE) -sOutputFile="$@" "$<" $(SUPRESSOUT)
-	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=bbox "$@" $(SUPRESSOUT) 2> "images/$*.xbb"
-images/%.eps : ../images/%.png
-	@echo "Creating image $@ (from $<)"
-	@mkdir -p images
-	# Some versions of convert refuse to produce .eps files due to security concerns
-	@convert "$<" "$@" $(SUPRESSOUT) 2$(SUPRESSOUT) || convert "$<" ppm:- | pnmtops -noturn | eps2eps - "$@"
+images/%.png : ../images/%.png
+	@cp $< $@
+	@ebb -x $@
+images/%.pdf : ../images/%.pdf
+	@cp $< $@
 	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=bbox "$@" $(SUPRESSOUT) 2> "images/$*.xbb"
 
 

@@ -2,10 +2,9 @@ MANUAL_LANG=$(notdir $(abspath ..))
 
 Logos = images/Linux.png images/Mac.png images/Windows.png images/TeXworks.png images/example.png
 EpsFromPdf = images/iconTypeset.eps images/iconAbortTypesetting.eps images/MacCmdKey.eps images/MacOptKey.eps images/LMB.eps images/RMB.eps
-EpsFromPng = images/toolbar1.eps images/toolbar2.eps images/TeXworks.eps images/Linux.eps images/Mac.eps images/Windows.eps images/interface-Tw.eps images/consoleOutput.eps images/errorParsingScript.eps
-EpsFromJpg = images/rechremp.eps
+EpsFromPng = images/rechremp.eps images/toolbar1.eps images/toolbar2.eps images/TeXworks.eps images/Linux.eps images/Mac.eps images/Windows.eps images/interface-Tw.eps images/consoleOutput.eps images/errorParsingScript.eps
 
-IMAGES = $(Logos) $(EpsFromPdf) $(EpsFromPng) ${EpsFromJpg}
+IMAGES = $(Logos) $(EpsFromPdf) $(EpsFromPng)
 
 HTOPTS = "manual,info,2,sec-filename,next,index=2,url-enc,charset=utf-8" " -cmozhtf -utf8" "-S*"
 
@@ -56,12 +55,6 @@ images/%.eps : ../images/%.pdf
 	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=$(GS_DEVICE) -sOutputFile="$@" "$<" $(SUPRESSOUT)
 	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=bbox "$@" $(SUPRESSOUT) 2> "images/$*.xbb"
 images/%.eps : ../images/%.png
-	@echo "Creating image $@ (from $<)"
-	@mkdir -p images
-	# Some versions of convert refuse to produce .eps files due to security concerns
-	@convert "$<" "$@" $(SUPRESSOUT) 2$(SUPRESSOUT) || convert "$<" ppm:- | pnmtops -noturn | eps2eps - "$@"
-	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=bbox "$@" $(SUPRESSOUT) 2> "images/$*.xbb"
-images/%.eps : ../images/%.jpg
 	@echo "Creating image $@ (from $<)"
 	@mkdir -p images
 	# Some versions of convert refuse to produce .eps files due to security concerns

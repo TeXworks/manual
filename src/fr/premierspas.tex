@@ -9,27 +9,19 @@ Voyons maintenant comment réaliser un premier document: pour cela on devra le s
 
 \section{Description sommaire de l'interface}\index{interface}
 
-\newsavebox{\inlineimg}
-\savebox{\inlineimg}{\includegraphics[scale=.6]{toolbar1}\hspace{1em}}
-
 Lorsqu'il s'ouvre l'éditeur présente une interface très dépouillée: une barre de titre, une barre de menu, deux petites barres d'outils\index{barre d'outils}, une grande zone (blanche) de saisie et, tout en bas, une barre d'état. Nous sommes dans la fenêtre \emph{source/éditeur}\index{source/éditeur}. Si vous avez déjà composé le document auparavant, le \path{.pdf} résultant sera affiché du côté droit dans la fenêtre de \emph{prévisualisation.}\index{prévisualisation}
 \vspace{10pt}
 
-%\noindent\includegraphics[scale=.6]{barreun}\hspace{10pt}
-\savebox{\inlineimg}{\includegraphics[scale=.6]{toolbar1}\hspace{.5em}}
-\begin{wrapfigure}[2]{l}{90pt}
+\begin{wrapfigure}[2]{l}{8em}
 \vspace*{-1em}
-\usebox{\inlineimg}
+\includegraphics[width=7.88em]{toolbar1}
 \end{wrapfigure}
 \noindent La première barre d'outils a un bouton pour lancer la composition et une liste déroulante pour choisir le format de composition (nous prendrons \verb|pdfLaTeX|.) Sachant que le raccourci clavier de la composition est \keysequence{Ctrl+T} (macOS: \keysequence{Cmd+T}) et que l'on ne change pratiquement jamais de format, on pourrait même ne pas afficher cette barre d'outils. De plus le choix peut se faire par le menu \menu{Composition}\index{composition}.
 \vspace{10pt}
 
-%\noindent\includegraphics[scale=.6]{barredeux}\hspace{10pt}
-\savebox{\inlineimg}{\includegraphics[scale=.6]{toolbar2}\hspace{.5em}}
-%\begin{wrapfigure}[2]{l}{\widthof{\usebox{\inlineimg}}}
-\begin{wrapfigure}[2]{l}{160pt}
+\begin{wrapfigure}[2]{l}{14.5em}
 \vspace*{-1em}
-\usebox{\inlineimg}
+\includegraphics[width=14.24em]{toolbar2}
 \end{wrapfigure}
 \noindent La deuxième n'offre que des boutons classiques: Nouveau document, Ouvrir, Sauvegarder | Annuler, Répéter | Couper, Copier, Coller | Rechercher, Remplacer.
 
@@ -139,7 +131,7 @@ Remarquez que le fait de n'entrer qu'un retour charriot ne crée pas un nouveau 
 Lors de la création d'un document pour la composition \LaTeX, on ne peut manquer de faire des erreurs: oubli d'une accolade fermante ou d'une commande \verb+\end{}+ de fermeture d'un environnement, utilisation de commandes mathématiques sans commande de passage au mode mathématique,\dots{} Lors de la compilation, s'il y a une erreur, \LaTeX{} s'arrête, en vous permettant de traiter ce problème. Cet arrêt est visible par l'arrêt du défilement des actions dans le panneau de sortie, un message d'erreur y est affiché et \LaTeX{} attend une instruction pour savoir ce qu'il doit faire.
 
 \begin{center}\label{fig:consoleOutput}
-\includegraphics[scale=.9]{consoleOutput}%[width=7cm]{tw-error}
+\includegraphics[width=21.8em]{consoleOutput}%[width=7cm]{tw-error}
 %\setlength{\unitlength}{1mm}\begin{picture}(0,0)
 %\put(-45,15){\colorbox{green}{\scriptsize Panneau de sortie}}
 %\put(-35,3){\colorbox{green}{\scriptsize Console}}
@@ -180,7 +172,7 @@ Après qu'une erreur a eu lieu, le panneau de sortie reste ouvert --- même apr�
 Pour vous aider à trouver les erreurs (du moins si vous utilisez \LaTeX), \Tw{} est fourni avec un petit script qui extraie toutes les erreurs, mises en garde et autres messages intéressants de la console de sortie et vous les présente sous une sorme simple de tableau.
 
 \begin{center}\label{fig:errorParsingScript}
-\includegraphics[scale=.9]{errorParsingScript}
+\includegraphics[width=21.88em]{errorParsingScript}
 \end{center}
 
 Dans ce cas, vous voyez une liste de messages de \LaTeX{}, avec les codes colorés et triés par sévérité. Le rouge montre les erreurs, le jaune les mises en garde et le bleu pour les boîtes sur- ou sous-remplies. À côté de la barre de couleur, vous voyez le nom du fichier où se trouve l'erreur. Ensuite, vous voyez le numéro de ligne (si le script a été capable de le déterminer), ainsi qu'un extrait de la console de sortie indiquant quelle était l'erreur. De plus le nom du fichier est un lien qui vous mènera au fichier (et si laligne a pu être déterminée, à la ligne) où \LaTeX{} a signalé l'erreur. En espérant que vous pourrez ainsi rapidement corriger les erreurs.

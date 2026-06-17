@@ -55,14 +55,16 @@ images/example.png : ../images/example.pdf
 	@mkdir -p images
 	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pngalpha -r300 -sstdout=%stderr -sOutputFile=- "$<" 2$(SUPRESSOUT) | convert png:- -resize 48x48 $@ $(SUPRESSOUT)
 images/%.png : ../images/%.png
+	@mkdir -p images
 	@cp $< $@
 	@extractbb -x $@
 images/%.pdf : ../images/%.pdf
+	@mkdir -p images
 	@cp $< $@
 	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=bbox "$@" $(SUPRESSOUT) 2> "images/$*.xbb"
 
 
-index.ind : images $(SOURCES) manual.cfg
+index.ind : $(IMAGES) $(SOURCES) manual.cfg
 	@echo "Creating index..."
 	@echo "   running htlatex..."
 	@htlatex index $(HTOPTS)

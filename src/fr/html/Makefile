@@ -51,7 +51,7 @@ images/example.png : ../images/example.pdf
 	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pngalpha -r300 -sstdout=%stderr -sOutputFile=- "$<" 2$(SUPRESSOUT) | convert png:- -resize 48x48 $@ $(SUPRESSOUT)
 images/%.png : ../images/%.png
 	@cp $< $@
-	@ebb -x $@
+	@extractbb -x $@
 images/%.pdf : ../images/%.pdf
 	@cp $< $@
 	@gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=bbox "$@" $(SUPRESSOUT) 2> "images/$*.xbb"
